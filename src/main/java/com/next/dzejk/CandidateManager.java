@@ -4,6 +4,9 @@ package com.next.dzejk;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.next.dzejk.model.CandidateModel;
+import com.next.dzejk.services.CandidateMethods;
+
 public class CandidateManager implements CandidateMethods {
 
 	/**
