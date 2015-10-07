@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.next.dzejk.model.CandidateModel;
+import com.next.dzejk.model.Candidate;
 
 //Kontroler odpowiedzialny za wyœwietlenie listy kandydatów
 @Controller
@@ -15,7 +15,7 @@ public class ListController {
 			//Nazwa metody PO RM nie ma wp³ywu na mapowanie
 			public ModelAndView list(){
 				
-				CandidateModel Candidate = new CandidateModel();
+				Candidate Candidate = new Candidate();
 				ModelAndView model = new ModelAndView("list");
 				
 				Candidate.setName("Bronislaw");

@@ -4,34 +4,34 @@ package com.next.dzejk;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.next.dzejk.model.CandidateModel;
-import com.next.dzejk.services.CandidateMethods;
+import com.next.dzejk.model.Candidate;
+import com.next.dzejk.services.ICandidate;
 
-public class CandidateManager implements CandidateMethods {
+public class CandidateManager implements ICandidate {
 
 	/**
 	 * 
 	 */
 	//private static final long serialVersionUID = 1L;
-	List<CandidateModel> list = new ArrayList<CandidateModel>();
+	List<Candidate> list = new ArrayList<Candidate>();
 	
 	@Override
-	public List<CandidateModel> saveCandidate(CandidateModel candidate) {
+	public List<Candidate> saveCandidate(Candidate candidate) {
 		
 		list.add(candidate);
 		return null;
 	}
 
 	@Override
-	public List<CandidateModel> deleteCandidate() {
+	public List<Candidate> deleteCandidate(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CandidateModel> getCandidate() {
+	public List<Candidate> getCandidate(int id) {
 	
-		for(CandidateModel candidate : list) {
+		for(Candidate candidate : list) {
 		    System.out.println("Zaczynam" + candidate);
 		}
 		return null;

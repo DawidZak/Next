@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.next.dzejk.CandidateManager;
-import com.next.dzejk.model.CandidateModel;
+import com.next.dzejk.model.Candidate;
 
 @Controller
 public class AddController extends CandidateManager {
@@ -21,13 +21,13 @@ public class AddController extends CandidateManager {
 			}
 			
 			@RequestMapping(value="/addSubmit", method=RequestMethod.POST)
-			public ModelAndView submitForm(@ModelAttribute("candidate") CandidateModel candidate){
+			public ModelAndView submitForm(@ModelAttribute("candidate") Candidate candidate){
 			
 				System.out.print(candidate);
 				
 				ModelAndView model = new ModelAndView("addSubmit");
 				saveCandidate(candidate);
-				getCandidate();
+				//getCandidate();
 				
 				model.addObject("candidate", candidate);
 				return model;

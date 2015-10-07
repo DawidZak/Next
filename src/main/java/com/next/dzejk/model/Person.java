@@ -1,6 +1,6 @@
 package com.next.dzejk.model;
 
-public class PersonModel  {
+public abstract class Person  {
 
 		protected String Name;
 		protected String Surename;

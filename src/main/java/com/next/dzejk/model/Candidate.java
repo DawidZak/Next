@@ -5,7 +5,7 @@ package com.next.dzejk.model;
 /*
  * 
  */
-public class CandidateModel extends PersonModel  {
+public class Candidate extends Person  {
 
 	
 	private Integer ID ;

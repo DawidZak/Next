@@ -4,15 +4,15 @@ package com.next.dzejk.services;
 
 import java.util.List;
 
-import com.next.dzejk.model.CandidateModel;
+import com.next.dzejk.model.Candidate;
 //tutaj bylo extend Serializable
-public interface CandidateMethods {
+public interface ICandidate {
 	
-	public List<CandidateModel> saveCandidate(CandidateModel candidate); 
+	public List<Candidate> saveCandidate(Candidate candidate); 
 	
-	public List<CandidateModel> deleteCandidate(); 
+	public List<Candidate> deleteCandidate(int id); 
 	
-	public List<CandidateModel>  getCandidate();
+	public List<Candidate>  getCandidate(int id);
 }
 /*
  *http://www.mkyong.com/java-best-practices/understand-the-serialversionuid/ 
