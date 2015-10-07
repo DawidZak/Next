@@ -1,5 +1,6 @@
 package com.next.dzejk.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,13 +9,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.next.dzejk.CandidateManager;
 import com.next.dzejk.model.Candidate;
+import com.next.dzejk.services.ICandidate;
+
 
 @Controller
 public class AddController extends CandidateManager {
-
+			@Autowired
+			private ICandidate iCandidate;
+			
 			@RequestMapping(value="/add", method = RequestMethod.GET)
 			public ModelAndView AddCandidate(){
-				
+			
 			ModelAndView model = new ModelAndView("add");
 			System.out.print("Dzia³am1");
 			return model;
@@ -26,10 +31,9 @@ public class AddController extends CandidateManager {
 				System.out.print(candidate);
 				
 				ModelAndView model = new ModelAndView("addSubmit");
-				saveCandidate(candidate);
-				//getCandidate();
-				
+				iCandidate.saveCandidate(candidate);	
 				model.addObject("candidate", candidate);
+				
 				return model;
 					
 			}

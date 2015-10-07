@@ -4,8 +4,11 @@ package com.next.dzejk.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.next.dzejk.model.Candidate;
 //tutaj bylo extend Serializable
+@Service
 public interface ICandidate {
 	
 	public List<Candidate> saveCandidate(Candidate candidate); 
