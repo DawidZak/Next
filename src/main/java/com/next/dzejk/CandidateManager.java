@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.next.dzejk.model.Candidate;
-import com.next.dzejk.services.ICandidate;
+import com.next.dzejk.services.ICandidateService;
 
-public class CandidateManager implements ICandidate {
+public class CandidateManager implements ICandidateService {
 
 	/**
 	 * 

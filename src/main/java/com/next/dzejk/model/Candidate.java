@@ -1,10 +1,12 @@
 package com.next.dzejk.model;
+import javax.persistence.Entity;
 
 
 //Rozszerzam klase CandidateModel o klase PersonModel
 /*
  * 
  */
+@Entity
 public class Candidate extends Person  {
 
 	

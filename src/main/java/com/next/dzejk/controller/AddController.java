@@ -9,13 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.next.dzejk.CandidateManager;
 import com.next.dzejk.model.Candidate;
-import com.next.dzejk.services.ICandidate;
-
+import com.next.dzejk.services.ICandidateService;
+import com.next.dzejk.services.CandidateService;
 
 @Controller
 public class AddController extends CandidateManager {
 			@Autowired
-			private ICandidate iCandidate;
+			private CandidateService iCandidate;
 			
 			@RequestMapping(value="/add", method = RequestMethod.GET)
 			public ModelAndView AddCandidate(){
