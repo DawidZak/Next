@@ -1,15 +1,28 @@
 package com.next.dzejk.model;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.springframework.stereotype.Component;
 
 
 //Rozszerzam klase CandidateModel o klase PersonModel
 /*
  * 
  */
+
 @Entity
-public class Candidate extends Person  {
+public class Candidate extends Person implements Serializable  {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+    @GeneratedValue
 	private Integer ID ;
 	private String Slogan;
 	private Boolean partyMember;

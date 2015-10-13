@@ -37,5 +37,11 @@ public class CandidateManager implements ICandidateService {
 		return null;
 	}
 
+	@Override
+	public void save(Object e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

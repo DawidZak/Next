@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 @Service
 public class CandidateService implements ICandidateService {
-
+	
 	@Override
 	public List<com.next.dzejk.model.Candidate> saveCandidate(com.next.dzejk.model.Candidate candidate) {
 		// TODO Auto-generated method stub
@@ -24,6 +24,12 @@ public class CandidateService implements ICandidateService {
 	public List<com.next.dzejk.model.Candidate> getCandidate(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void save(Object e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

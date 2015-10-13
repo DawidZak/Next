@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import com.next.dzejk.model.Candidate;
 //tutaj bylo extend Serializable
 @Service
-public interface ICandidateService {
+public interface ICandidateService<Entity> {
 	
+	public void save(Entity e);
 	public List<Candidate> saveCandidate(Candidate candidate); 
 	
 	public List<Candidate> deleteCandidate(int id); 

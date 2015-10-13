@@ -21,9 +21,8 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
 
-	<context:component-scan base-package="com.next.dzejk"/>
-	<context:component-scan base-package="com.next.dzejk.services"/>
-
+	<context:component-scan base-package="com.next"/>
 
 </beans:beans>

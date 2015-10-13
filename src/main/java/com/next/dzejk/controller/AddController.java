@@ -31,7 +31,7 @@ public class AddController extends CandidateManager {
 				System.out.print(candidate);
 				
 				ModelAndView model = new ModelAndView("addSubmit");
-				iCandidate.saveCandidate(candidate);	
+				//iCandidate.saveCandidate(candidate);	
 				model.addObject("candidate", candidate);
 				
 				return model;
