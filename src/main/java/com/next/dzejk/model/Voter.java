@@ -1,8 +1,8 @@
 package com.next.dzejk.model;
 
-public class Voter {
+public class Voter  {
 	
-	protected Person voterData;
+	protected Person voterData; //kompozycja 
 	protected String partyMember;
 	
 	public int vote() {

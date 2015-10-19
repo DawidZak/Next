@@ -2,8 +2,10 @@ package com.next.dzejk.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 @Service
+@Repository
 public class CandidateService implements ICandidateService {
 	
 	@Override
@@ -26,10 +28,6 @@ public class CandidateService implements ICandidateService {
 		return null;
 	}
 
-	@Override
-	public void save(Object e) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

@@ -14,8 +14,9 @@ import com.next.dzejk.services.CandidateService;
 
 @Controller
 public class AddController extends CandidateManager {
+			
 			@Autowired
-			private CandidateService iCandidate;
+			private ICandidateService iCandidate; //private CandidateService bylo
 			
 			@RequestMapping(value="/add", method = RequestMethod.GET)
 			public ModelAndView AddCandidate(){
