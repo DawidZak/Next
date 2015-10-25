@@ -8,15 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.next.dzejk.model.Candidate;
 //tutaj bylo extend Serializable
-@Service
+//IRS
+
 public interface ICandidateService {
 	
 	
-	public List<Candidate> saveCandidate(Candidate candidate); 
+	public Candidate saveCandidate(Candidate candidate); 
 	
-	public List<Candidate> deleteCandidate(int id); 
-	
-	public List<Candidate>  getCandidate(int id);
+//	public List<Candidate> deleteCandidate(int id); 
+//	
+//	public List<Candidate>  getCandidate(int id);
 }
 /*
  *http://www.mkyong.com/java-best-practices/understand-the-serialversionuid/ 

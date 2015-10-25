@@ -3,7 +3,9 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
@@ -14,16 +16,23 @@ import org.springframework.stereotype.Component;
  */
 
 @Entity
-public class Candidate extends Person implements Serializable  {
+public class Candidate extends Person   {
 
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
 	@Id
     @GeneratedValue
 	private Integer ID ;
+//	public Candidate();
+//	public Candidate(Integer iD, String slogan, Boolean partyMember) {
+//		super();
+//		this.ID = iD;
+//		this.Slogan = slogan;
+//		this.partyMember = partyMember;
+//	}
 	private String Slogan;
 	private Boolean partyMember;
 	
@@ -49,7 +58,7 @@ public class Candidate extends Person implements Serializable  {
 	}
 	@Override
 	public String toString() {
-		return "CandidateModel [ID=" + ID + ", Slogan=" + Slogan
+		return "Candidate [ID=" + ID + ", Slogan=" + Slogan
 				+ ", partyMember=" + partyMember + ", Name=" + Name
 				+ ", Surename=" + Surename + ", Age=" + Age + ", bornDate="
 				+ bornDate + "]";

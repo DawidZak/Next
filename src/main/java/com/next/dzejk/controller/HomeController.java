@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.next.dzejk.dao.CandidateDao;
 import com.next.dzejk.dao.ICandidateDao;
 import com.next.dzejk.model.Candidate;
+import com.next.dzejk.model.CandidateRepository;
+import com.next.dzejk.services.ICandidateService;
 
 /**
  * Handles requests for the application home page.
@@ -31,10 +33,24 @@ public class HomeController {
 	@Autowired
 	ICandidateDao iCandidate;
 	
+	@Autowired
+	ICandidateService iCandidateRepo;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
+		
+		Candidate candidate = new Candidate();
+		candidate.setAge(1);
+		candidate.setBornDate("dsdsds");
+		candidate.setBornPlace("Lodz");
+		
+		candidate.setName("AAA");
+		candidate.setPartyMember(false);
+		candidate.setSlogan("dasdasdasda");
+		candidate.setSurename("dsds");
+		System.out.println(candidate);
+		iCandidateRepo.saveCandidate(candidate);
+		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		

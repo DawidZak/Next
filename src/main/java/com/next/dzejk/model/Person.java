@@ -1,11 +1,18 @@
 package com.next.dzejk.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Person  {
 
 		protected String Name;
+		@Column (name="surename")
+		
 		protected String Surename;
 		protected int Age;
 		protected String bornDate;
+		protected String bornPlace;
 		
 		public String getName() {
 			return Name;
@@ -30,6 +37,12 @@ public abstract class Person  {
 		}
 		public void setBornDate(String bornDate) {
 			this.bornDate = bornDate;
+		}
+		public String getBornPlace() {
+			return bornPlace;
+		}
+		public void setBornPlace(String bornPlace) {
+			this.bornPlace = bornPlace;
 		}
 		@Override
 		public String toString() {

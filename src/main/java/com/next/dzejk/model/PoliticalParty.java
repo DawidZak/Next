@@ -1,12 +1,23 @@
 package com.next.dzejk.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class PoliticalParty {
-	
+	@Id
+	private int ID;
 	private String partyName;
 	private int countMembers;
 	private String kind;
 	private String partyPresident;
 	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
 	public String getPartyName() {
 		return partyName;
 	}

@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -17,6 +18,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * Klasa konfiguracyjna. Definiuje ziarna zwiazane z konfiguracja polaczenia do
@@ -25,6 +28,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.next", entityManagerFactoryRef = "entityManagerFactory")
+@ComponentScan("com.next.dzejk.model")
 public class Config1 {
     /**
      * Sterownik bazy danych.
@@ -36,7 +40,7 @@ public class Config1 {
      * Adres bazy.
      */
     
-    private String url = "jdbc:h2:tcp//localhost/~/Next";
+    private String url = "jdbc:h2:tcp://localhost/~/Next1;INIT=CREATE SCHEMA IF NOT EXISTS Next;MV_STORE=FALSE;MVCC=FALSE;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE";
 
     /**
      * Nazwa użytkownika.
@@ -60,7 +64,7 @@ public class Config1 {
      * Hbm2ddl auto (create / update).
      */
     
-    private String hbm2ddlAuto = "CREATE";
+    private String hbm2ddlAuto = "create";
 
     /**
      * Ziarno tworzące entityManagerFactory. Umożliwia polaczenie z baza danych
@@ -69,16 +73,18 @@ public class Config1 {
      * @return LocalContainerEntityManagerFactoryBean zawierajace ustawienia
      *         polaczenia z baza danych.
      */
+
+    
     @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] {"com.dzejk.model"});
+        em.setPackagesToScan(new String[] {"com.next.dzejk.model"});
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
-
+        
         return em;
     }
 
@@ -91,6 +97,7 @@ public class Config1 {
      */
     @Bean
     public DataSource dataSource() {
+    	
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driver);
         dataSource.setUrl(url);
@@ -137,6 +144,7 @@ public class Config1 {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
         properties.setProperty("hibernate.dialect", dialect);
+        properties.setProperty("hibernate.show_sql", "true");
         return properties;
     }
 }
