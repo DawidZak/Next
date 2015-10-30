@@ -1,8 +1,9 @@
 package com.next.dzejk.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.MappedSuperclass;
-
+@Embeddable
 @MappedSuperclass
 public abstract class Person  {
 

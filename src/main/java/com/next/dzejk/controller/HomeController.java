@@ -12,10 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.next.dzejk.dao.CandidateDao;
-import com.next.dzejk.dao.ICandidateDao;
+
+import com.next.dzejk.dao.CandidateRepository;
+
 import com.next.dzejk.model.Candidate;
-import com.next.dzejk.model.CandidateRepository;
 import com.next.dzejk.services.ICandidateService;
 
 /**
@@ -30,8 +30,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 
-	@Autowired
-	ICandidateDao iCandidate;
+	
 	
 	@Autowired
 	ICandidateService iCandidateRepo;
@@ -44,7 +43,7 @@ public class HomeController {
 		candidate.setBornDate("dsdsds");
 		candidate.setBornPlace("Lodz");
 		
-		candidate.setName("AAA");
+		candidate.setName("AADSA");
 		candidate.setPartyMember(false);
 		candidate.setSlogan("dasdasdasda");
 		candidate.setSurename("dsds");

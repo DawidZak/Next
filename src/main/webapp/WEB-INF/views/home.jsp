@@ -1,8 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 	<title>Home</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel='stylesheet' href='/webjars/bootstrap/3.3.5/css/bootstrap.min.css'>
 
@@ -31,6 +35,7 @@
               <li class="active"><a href="/dzejk">Strona glowna</a></li>
               <li><a href="list">Lista kandydatow</a></li>
               <li><a href="#">Contact</a></li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dodaj...<span class="caret"></span></a>
                 <ul class="dropdown-menu">
