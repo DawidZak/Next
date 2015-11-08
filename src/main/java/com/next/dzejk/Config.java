@@ -23,6 +23,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.thymeleaf.spring3.SpringTemplateEngine;
+import org.thymeleaf.spring3.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 
 /**
@@ -69,6 +72,8 @@ public class Config {
      */
     
     private String hbm2ddlAuto = "create";
+    
+    private String UTF = "UTF-8";
 
     /**
      * Ziarno tworzące entityManagerFactory. Umożliwia polaczenie z baza danych
@@ -151,24 +156,30 @@ public class Config {
         properties.setProperty("hibernate.show_sql", "true");
         return properties;
     }
+    
     @Bean
-    public UrlBasedViewResolver viewResolver() {
-        UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
-        viewResolver.setViewClass(TilesView.class);
-        return viewResolver;
+    public ServletContextTemplateResolver templateResolver() {
+        ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML5");
+        resolver.setCacheable(false);
+        resolver.setCharacterEncoding(UTF);
+        return resolver;
     }
 
     @Bean
-    public TilesConfigurer tilesConfigurer() {
-    	System.out.println("Tiles");
-        TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[]{
-                "/WEB-INF/layouts/tiles.xml",
-               //"WEB-INF/views/**/tiles.xml"
-        });
-        System.out.println("Tiles zdefiniowany");
-        tilesConfigurer.setCheckRefresh(true);
-        tilesConfigurer.setCompleteAutoload(true);
-        return tilesConfigurer;
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.setTemplateResolver(templateResolver());
+        return engine;
+    }
+
+    @Bean
+    public ThymeleafViewResolver thymeleafViewResolver() {
+        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setTemplateEngine(templateEngine());
+        resolver.setCharacterEncoding(UTF);
+        return resolver;
     }
 }

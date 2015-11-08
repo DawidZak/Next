@@ -9,7 +9,7 @@ This README would normally document whatever steps are necessary to get your app
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
-
+* Lombok
 * Summary of set up
 * Configuration
 * Dependencies
@@ -27,3 +27,11 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
+### Used ###
+* Lombok
+* Thymleaf
+* Hibernate
+* H2
+
+![Alt text](Next.jpg)

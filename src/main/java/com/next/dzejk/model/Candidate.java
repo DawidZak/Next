@@ -9,63 +9,21 @@ import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
+import lombok.Data;
+
 
 //Rozszerzam klase CandidateModel o klase PersonModel
 /*
  * 
  */
-
+@Data
 @Entity
 public class Candidate extends Person   {
-
-	
-	/**
-	 * 
-	 */
-
 	@Id
     @GeneratedValue
 	private Integer ID ;
-//	public Candidate();
-//	public Candidate(Integer iD, String slogan, Boolean partyMember) {
-//		super();
-//		this.ID = iD;
-//		this.Slogan = slogan;
-//		this.partyMember = partyMember;
-//	}
 	private String Slogan;
 	private Boolean partyMember;
-	
-	public Integer getID() {
-		return ID;
-	}
-	public void setID(Integer iD) {
-		ID = iD;
-	}
-	public String getSlogan() {
-		return Slogan;
-	}
-	public void setSlogan(String slogan) {
-		Slogan = slogan;
-	}
-	public Boolean getPartyMember() {
-		return partyMember;
-	}
-	public void setPartyMember(Boolean partyMember) {
-		this.partyMember = partyMember;
-		
-
-	}
-	@Override
-	public String toString() {
-		return "Candidate [ID=" + ID + ", Slogan=" + Slogan
-				+ ", partyMember=" + partyMember + ", Name=" + Name
-				+ ", Surename=" + Surename + ", Age=" + Age + ", bornDate="
-				+ bornDate + "]";
-	}
-	
-	
-		
 	}
 
 	
