@@ -5,6 +5,7 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +17,10 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -26,17 +31,20 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 
 
 /**
  * Klasa konfiguracyjna. Definiuje ziarna zwiazane z konfiguracja polaczenia do
  * bazy H2.
  */
+@EnableWebSecurity
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.next", entityManagerFactoryRef = "entityManagerFactory")
 @ComponentScan("com.next.dzejk.model")
-public class Config {
+public class Config extends WebSecurityConfigurerAdapter {
     /**
      * Sterownik bazy danych.
      */
@@ -182,4 +190,22 @@ public class Config {
         resolver.setCharacterEncoding(UTF);
         return resolver;
     }
+    
+    
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	  auth.jdbcAuthentication().dataSource(dataSource())
+	  .usersByUsernameQuery(null).authoritiesByUsernameQuery(null);
+	}
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+
+	  http.authorizeRequests()
+		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
+		.antMatchers("/users").permitAll()
+		.and().formLogin();
+		
+	}
 }
