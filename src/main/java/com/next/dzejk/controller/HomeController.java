@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-import com.next.dzejk.dao.CandidateRepository;
+import com.next.dzejk.dao.ICandidateRepository;
 
 import com.next.dzejk.model.Candidate;
 import com.next.dzejk.services.ICandidateService;
@@ -39,14 +39,12 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Candidate candidate = new Candidate();
-		candidate.setAge(1);
+
 		candidate.setBornDate("dsdsds");
-		candidate.setBornPlace("Lodz");
-		
-		candidate.setName("AADSA");
+
 		candidate.setPartyMember(false);
 		candidate.setSlogan("dasdasdasda");
-		candidate.setSurename("dsds");
+
 		System.out.println(candidate);
 		iCandidateRepo.saveCandidate(candidate);
 		

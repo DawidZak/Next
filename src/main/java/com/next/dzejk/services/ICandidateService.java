@@ -13,7 +13,7 @@ import com.next.dzejk.model.Candidate;
 public interface ICandidateService {
 	
 	
-	public Candidate saveCandidate(Candidate candidate); 
+	 Candidate saveCandidate(Candidate candidate); 
 	
 //	public List<Candidate> deleteCandidate(int id); 
 //	

@@ -18,10 +18,10 @@ public class ListController {
 				Candidate Candidate = new Candidate();
 				ModelAndView model = new ModelAndView("list");
 				
-				Candidate.setName("Bronislaw");
+;
 				Candidate.setPartyMember(true);
 				Candidate.setSlogan("Twoja Polska, moje hajsy!");
-				Candidate.setAge(23);
+
 				model.addObject("Candidate", Candidate);
 				System.out.print(Candidate);
 				

@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.next.dzejk.model.Candidate;
 
-@Repository //RR
+@Repository 
 @Transactional
-public interface CandidateRepository extends JpaRepository<Candidate, Long> {
+public interface ICandidateRepository extends JpaRepository<Candidate, Long> {
 	
 		
 

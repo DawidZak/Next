@@ -10,12 +10,13 @@ import lombok.Data;
 @MappedSuperclass
 public abstract class Person  {
 
-		protected String Name;
-		@Column (name="surename")		
-		protected String Surename;
-		protected int Age;
+		protected String firstName;		
+		protected String lastName;
 		protected String bornDate;
-		protected String bornPlace;
 		protected String password;
 		protected String PESEL;
+		protected String email;
+		protected String city;
+		protected int IdR;
+		protected int IdD;
 }
