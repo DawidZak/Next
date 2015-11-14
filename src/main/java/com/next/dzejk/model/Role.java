@@ -4,7 +4,11 @@
 package com.next.dzejk.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import lombok.RequiredArgsConstructor;
 
 
 /**
@@ -12,9 +16,11 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@RequiredArgsConstructor
 public class Role {
-	@Id
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int Id;
-	private String Role;
+	private final String name;
 
 }

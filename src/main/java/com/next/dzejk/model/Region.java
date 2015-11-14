@@ -16,11 +16,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 
-public class District {
+public class Region {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int Id;
-	private final  String districtName;
+	private final  String regionName;
 
 	
 

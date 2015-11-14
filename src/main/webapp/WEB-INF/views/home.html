@@ -3,18 +3,18 @@
 <head>
 	<title>Home</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-<link rel='stylesheet' href='/webjars/bootstrap/3.3.5/css/bootstrap.min.css'/>
 
 
+<link th:href="@{/resources/css/main.css}" rel="stylesheet" />
+<link th:href="@{/resources/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css}" rel="stylesheet" />
 <!-- Optional theme -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>	
+
 </head>
 <body>
 <div th:class="container">
 
       <!-- Static navbar -->
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default upperCase">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -28,27 +28,25 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <!-- Doczytac co oznacza # -->	
-              <li class="active"><a href="/dzejk">Strona glowna</a></li>
-              <li><a href="list">Lista kandydatow</a></li>
-              <li><a href="#">Contact</a></li>
+              <li class="active"><a href="/dzejk">Strona główna</a></li>
+              <li><a href="list">Lista partii politycznych</a></li>
+             
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dodaj...<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lista kandydatów na...<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Partie polityczną</a></li>
-                  <li><a href="#">Kandydata</a></li>
+                  <li><a href="#">Prezydenta</a></li>
+                  <li><a href="#">Przewodniczącego Partii</a></li>
                   <li><a href="#">Głosującego</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
                 </ul>
               </li>
+              <li><a href="list">Nadchodzące wybory</a></li>
             </ul>
+            
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-              <li><a href="../navbar-static-top/">Static top</a></li>
-              <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+              <li class="active"><a href="./">Zaloguj <span class="sr-only">(current)</span></a></li>
+              <li><a href="../navbar-static-top/">Zarejestruj</a></li>
+              <li><a href="../navbar-fixed-top/">O stronie</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -62,9 +60,9 @@
           <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs </a>
         </p>
       </div>
-
+	<div th:include="templates/templates::links"></div>
     </div> <!-- /container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script th:src="@{/resources/jquery/jquery-1.11.3.min.js}"></script>
+	<script th:src="@{/resources/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js}"></script>
 </body>
 </html>
