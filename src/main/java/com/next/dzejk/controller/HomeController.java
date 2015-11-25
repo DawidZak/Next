@@ -44,6 +44,9 @@ public class HomeController {
 
 		candidate.setPartyMember(false);
 		candidate.setSlogan("dasdasdasda");
+		candidate.setPESEL("123456789");
+		candidate.setPassword("12");
+		
 
 		System.out.println(candidate);
 		iCandidateRepo.saveCandidate(candidate);
@@ -56,6 +59,12 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(){
+		
+		return "login";
 	}
 	
 }

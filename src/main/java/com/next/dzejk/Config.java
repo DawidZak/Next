@@ -28,6 +28,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -39,12 +40,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Klasa konfiguracyjna. Definiuje ziarna zwiazane z konfiguracja polaczenia do
  * bazy H2.
  */
-@EnableWebSecurity
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.next", entityManagerFactoryRef = "entityManagerFactory")
 @ComponentScan("com.next.dzejk.model")
-public class Config extends WebSecurityConfigurerAdapter {
+public class Config  {
     /**
      * Sterownik bazy danych.
      */
@@ -180,8 +181,7 @@ public class Config extends WebSecurityConfigurerAdapter {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
-        //engine.addDialect(new SpringSecurityDialect());
-
+        engine.addDialect(new SpringSecurityDialect());
         return engine;
     }
 
@@ -193,22 +193,5 @@ public class Config extends WebSecurityConfigurerAdapter {
         return resolver;
     }
     
-    
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-	  auth.jdbcAuthentication().dataSource(dataSource())
-	  .usersByUsernameQuery(null).authoritiesByUsernameQuery(null);
-	}
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-	  http.authorizeRequests()
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
-		.antMatchers("/users").permitAll()
-		.and().formLogin();
-		
-	}
 
 }

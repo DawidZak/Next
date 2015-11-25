@@ -8,15 +8,49 @@
 </head>
 <body>
 
-<link th:href="@{/resources/css/main.css}" rel="stylesheet" />
-<link th:href="@{/resources/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css}" rel="stylesheet" />
-<div th:fragment="links">
-<p>dszd</p>
+<link th:fragment="link" th:href="@{/resources/css/main.css}" rel="stylesheet" />
+<link th:fragment="link" th:href="@{/resources/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css}" rel="stylesheet" />
 
-</div>
-<div th:fragment="links">
-<p>dszd</p>
+<div th:fragment="menu">
 
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default upperCase">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <!-- Doczytac co oznacza # -->	
+              <li class="active"><a href="/dzejk">Strona główna</a></li>
+              <li><a href="list">Lista partii politycznych</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lista kandydatów na...<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Prezydenta</a></li>
+                  <li><a href="#">Przewodniczącego Partii</a></li>
+                  <li><a href="#">Głosującego</a></li>
+                </ul>
+              </li>
+              <li><a href="list">Nadchodzące wybory</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="/dzejk/login">Zaloguj <span class="sr-only">(current)</span></a></li>
+              <li><a href="../navbar-static-top/">Zarejestruj</a></li>
+              <li><a href="../navbar-fixed-top/">O stronie</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
 </div>
+    <script th:fragment="script" th:src="@{/resources/jquery/jquery-1.11.3.min.js}"></script>
+	<script th:fragment="script" th:src="@{/resources/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js}"></script>
 </body>
 </html>
