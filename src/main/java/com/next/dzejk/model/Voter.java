@@ -8,8 +8,8 @@ import lombok.Data;
 @Entity
 public class Voter  {
 	@Id
-	private int ID;
-	protected Person voterData; //kompozycja 
+	private int ID; 
 	protected String partyMember;
-
+	private int IDU;
 }
+ 

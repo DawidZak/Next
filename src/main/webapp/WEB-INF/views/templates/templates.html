@@ -4,15 +4,32 @@
 <head>
 <meta charset="UTF-8"/>
 <title>Insert title here</title>
+<style>
+body {
+    font-family: 'PlayfairDisplayRegular', "Georgia", serif;
+    }
+	
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #555 !important;
+    background-color: #EF0A0A !important;
+	}
+	
+	.navbar-default {
+	background-color: inherit;
+    border-color: white;
+	}
 
+</style>
 </head>
 <body>
 
 <link th:fragment="link" th:href="@{/resources/css/main.css}" rel="stylesheet" />
 <link th:fragment="link" th:href="@{/resources/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css}" rel="stylesheet" />
-
+<link th:fragment="link" th:href="@{/resources/font-awesome/font-awesome-4.4.0/css/font-awesome.min.css}" rel="stylesheet" />
 <div th:fragment="menu">
 
+<img th:src="@{/resources/photos/Herb_Polski.svg}" style="height:10em; margin-top: 10px;" alt="..."></img>
+      <p style="display: inline-block; margin-left: 20px; font-size: 4em;">wybory.gov.pl</p>
       <!-- Static navbar -->
       <nav class="navbar navbar-default upperCase">
         <div class="container-fluid">
@@ -26,7 +43,7 @@
             <a class="navbar-brand" href="#">Project name</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul  class="nav navbar-nav">
               <!-- Doczytac co oznacza # -->	
               <li class="active"><a href="/dzejk">Strona główna</a></li>
               <li><a href="list">Lista partii politycznych</a></li>
@@ -49,6 +66,31 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
+      
+</div>
+<div th:fragment="footer">
+<div class="row">
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img th:src="@{/resources/photos/Sejm_Logo.jpg}"  alt="..."/>
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img th:src="@{/resources/photos/Senat_Logo.jpg}"  alt="..."/>
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img th:src="@{/resources/photos/Monitor_Polski.jpg}" alt="..."/>
+    </a>
+  </div>
+    <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img th:src="..." alt="..."/>
+    </a>
+  </div>
+</div>
 </div>
     <script th:fragment="script" th:src="@{/resources/jquery/jquery-1.11.3.min.js}"></script>
 	<script th:fragment="script" th:src="@{/resources/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js}"></script>

@@ -19,7 +19,7 @@ public interface ICandidateService {
 //	
 //	public List<Candidate>  getCandidate(int id);
 }
-/*
+/* 
  *http://www.mkyong.com/java-best-practices/understand-the-serialversionuid/ 
  * http://docs.spring.io/docs/Spring-MVC-step-by-step/part3.html
  * http://www.tutorialspoint.com/java/java_serialization.htm

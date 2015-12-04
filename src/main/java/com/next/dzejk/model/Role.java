@@ -24,3 +24,4 @@ public class Role {
 	private final String name;
 
 }
+ 

@@ -9,7 +9,7 @@
 	
 	<http auto-config="true" use-expressions="true">
 		
-		<intercept-url pattern="/register" access="isAuthenticated()" />
+		<intercept-url pattern="/list" access="hasRole('ADMIN')" />
 		<intercept-url pattern="/register.**" access="isAuthenticated()" />
 		<intercept-url pattern="/register/" access="isAuthenticated()" />
 		<intercept-url pattern="/register/*" access="isAuthenticated()" />
@@ -27,9 +27,8 @@
 <!-- 	  	<password-encoder hash="sha-256" /> -->
 		<jdbc-user-service data-source-ref="dataSource"
 		  users-by-username-query=
-		    "SELECT pesel, password, 1 as enabled FROM CANDIDATE  WHERE pesel = ?"
-		  authorities-by-username-query=
-								    "SELECT IDR, 1 as enabled FROM CANDIDATE  WHERE pesel = ?" />
+		    "SELECT pesel, password, 1 as enabled FROM USER WHERE pesel = ?"
+		  authorities-by-username-query= "SELECT r.name, u.pesel FROM ROLE r, USER u WHERE u.IDR = r.ID AND u.PESEL = ?"/>
 	  </authentication-provider>
 	</authentication-manager>
 

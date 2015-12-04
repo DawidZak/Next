@@ -18,17 +18,18 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Candidate extends Person   {
+public class Candidate    {
 	@Id
     @GeneratedValue
 	private Integer ID ;
 	private String Slogan;
 	private Boolean partyMember;
+	private int IDU; 
 	}
 
 	
 	
-
+   
 	
 
 	

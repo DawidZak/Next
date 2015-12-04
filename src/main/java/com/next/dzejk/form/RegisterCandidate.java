@@ -1,15 +1,14 @@
 package com.next.dzejk.form;
 
-import com.next.dzejk.model.Person;
+import com.next.dzejk.model.User;
 
-public class RegisterCandidate extends Person {
+public class RegisterCandidate extends User {
 
 	private Integer ID ;
 	private String Slogan;
 	private Boolean partyMember;
-	public Integer getID() {
-		return ID;
-	}
+
+
 	public void setID(Integer iD) {
 		ID = iD;
 	}
