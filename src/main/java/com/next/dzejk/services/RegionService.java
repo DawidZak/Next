@@ -1,5 +1,7 @@
 package com.next.dzejk.services;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,8 @@ public class RegionService implements IRegionService {
 	
 	@Override
 	public Region saveRegion(Region district) {
-		regionName.save(district);
-		return null;
+		return regionName.save(district);
+		
 	}
 	
 	@PostConstruct
@@ -47,5 +49,11 @@ public class RegionService implements IRegionService {
 	public Region findByid(int id) {
 		return regionName.findOne(id);
 		
+	}
+
+	@Override
+	public List<Region> findAll() {
+		
+		return regionName.findAll();
 	}
 }

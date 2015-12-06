@@ -9,19 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@RequiredArgsConstructor
-
+@Data
 
 public class Region {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int Id;
-	private final  String regionName;
- 
+	private  String regionName;
 	
-
+	Region(){};
+	public Region(String regionName) {
+		this.regionName=regionName;
+	}
 }
