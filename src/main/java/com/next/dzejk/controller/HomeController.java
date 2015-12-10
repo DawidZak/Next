@@ -18,6 +18,7 @@ import com.next.dzejk.dao.ICandidateRepository;
 import com.next.dzejk.model.Candidate;
 import com.next.dzejk.model.User;
 import com.next.dzejk.services.ICandidateService;
+import com.next.dzejk.services.IUserService;
 import com.next.dzejk.services.UserService;
 
 /**
@@ -35,21 +36,21 @@ public class HomeController {
 	
 	
 	@Autowired
-	UserService iUserRepository;
+	IUserService iUserRepository;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		User user = new User();
 
-		user.setBornDate("dsdsds");
-		user.setPESEL("123456789");
-		user.setPassword("12");
-		user.setIdR(2);
+//		user.setBornDate("dsdsds");
+//		user.setPESEL("123456789");
+//		user.setPassword("12");
+//		user.setIdR(2);
 		
 
 		System.out.println(user);
-		iUserRepository.saveUser(user);
+		//iUserRepository.saveUser(user);
 		  
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);

@@ -8,8 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 @Data
+@Component
 @Entity
 public  class User  {
 		@Id

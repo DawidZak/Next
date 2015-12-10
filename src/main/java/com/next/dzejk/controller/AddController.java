@@ -6,22 +6,26 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.next.dzejk.dao.IRegionRepository;
+import com.next.dzejk.form.RegisterUser;
 //import com.next.dzejk.CandidateManager;
 import com.next.dzejk.model.Candidate;
 import com.next.dzejk.model.Region;
+import com.next.dzejk.model.User;
 import com.next.dzejk.services.ICandidateService;
-
+import com.next.dzejk.services.IUserService;
 import com.next.dzejk.services.CandidateService;
 
 @Controller
 public class AddController { // extends CandidateManager
-
+	
 	@Autowired
 	IRegionRepository regionName;
 
@@ -29,31 +33,34 @@ public class AddController { // extends CandidateManager
 	private ICandidateService iCandidate; // private CandidateService bylo
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView AddCandidate() {
+	public String AddCandidate(Model model) {
 		List<Region> regions = regionName.findAll();
-		for(Region region:regions){
-			System.out.println(region);
-		}
-		ModelAndView model = new ModelAndView("register", "regions", regions);
+
+		model.addAttribute("registerUser",new RegisterUser()); //ta wartosc jest do view i nizej
+		model.addAttribute("regions", regions);
+		
 		System.out.print("Dzia³am1");
 
-		return model;
+		return "register";
 	}
-	// @Autowired
-	// private EntityManager em;
-
+	@Autowired
+	IUserService iUserRepository;
+	
 	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST)
-	public ModelAndView submitForm(@ModelAttribute("candidate") Candidate candidate) {
+	public String submitForm(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult result, Model model ) {
+		
+		User user = new User();
+		user.setFirstName(registerUser.getFirstName());
+		user.setLastName(registerUser.getLastName());
+		user.setCity(registerUser.getCity());
+		user.setPassword(registerUser.getPassword());
+		user.setIdD(registerUser.getIdR());
+		user.setEmail(registerUser.getEmail());
+		user.setPESEL(registerUser.getPESEL());
 
-		System.out.print(candidate);
-		// Candidate candidateT = new Candidate();
-		// candidateT.setAge(123);
-		// em.persist(candidateT);
-		ModelAndView model = new ModelAndView("addSubmit");
-		iCandidate.saveCandidate(null);
-		model.addObject("candidate", candidate);
-
-		return model;
+		iUserRepository.saveUser(user);
+		
+		return "/list";
 
 	}
 }
