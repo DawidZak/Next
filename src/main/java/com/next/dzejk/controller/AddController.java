@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.next.dzejk.dao.IRegionRepository;
@@ -46,23 +48,34 @@ public class AddController { // extends CandidateManager
 	@Autowired
 	IUserService iUserRepository;
 	
-	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST)
-	public String submitForm(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult result, Model model ) {
-		
-		User user = new User();
-		user.setFirstName(registerUser.getFirstName());
-		user.setLastName(registerUser.getLastName());
-		user.setCity(registerUser.getCity());
-		user.setPassword(registerUser.getPassword());
-		user.setIdD(registerUser.getIdR());
-		user.setEmail(registerUser.getEmail());
-		user.setPESEL(registerUser.getPESEL());
+	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST, produces = "multipart/form-data")
+	//public String submitForm(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult result, Model model ) {
+		public @ResponseBody  String saveUser(@RequestBody RegisterUser registerUser, BindingResult result, Model model){
+	
+//			if (result.hasErrors()){
+//				
+//				
+//			}
+//			
+		System.out.println(registerUser);
 
-		iUserRepository.saveUser(user);
-		
-		return "/list";
+			User user = new User();
+			user.setFirstName(registerUser.getFirstName());
+			user.setLastName(registerUser.getLastName());
+			user.setCity(registerUser.getCity());
+			System.out.println(user);
+			user.setPassword(registerUser.getPassword());
+			user.setIdD(registerUser.getIdR());
+			user.setEmail(registerUser.getEmail());
+			user.setPESEL(registerUser.getPESEL());
+			System.out.print(result.hasErrors());
+			iUserRepository.saveUser(user);
+		 
+		 return "/list";
+}
+
 
 	}
-}
+
 
 // https://www.youtube.com/watch?v=8V4ArtwNuwk
