@@ -1,13 +1,18 @@
 package com.next.dzejk.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,27 +53,39 @@ public class AddController { // extends CandidateManager
 	@Autowired
 	IUserService iUserRepository;
 	
-	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST, produces = "multipart/form-data")
+	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST)
 	//public String submitForm(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult result, Model model ) {
-		public @ResponseBody  String saveUser(@RequestBody RegisterUser registerUser, BindingResult result, Model model){
+		public @ResponseBody  String saveUser(@Valid @ModelAttribute("registerUser")   RegisterUser registerUser,BindingResult result, HttpServletRequest request,  Model model){
+			System.out.println(result);
+			if (!result.hasErrors()){
+				//ValidationUtils.
+				User user = new User();
+				user.setFirstName(registerUser.getFirstName());
+				user.setLastName(registerUser.getLastName());
+				user.setCity(registerUser.getCity());
+				user.setPassword(registerUser.getPassword());
+				user.setIdD(registerUser.getIdD());
+				user.setEmail(registerUser.getEmail());
+				user.setPESEL(registerUser.getPESEL());
+				user.setIdR(1);
+				iUserRepository.saveUser(user);
 	
-//			if (result.hasErrors()){
-//				
-//				
-//			}
-//			
-		System.out.println(registerUser);
-
+			}
+			//ValidationUtils.
+		    System.out.println(registerUser.getIdD());
+		    System.out.println(registerUser.getCity());
 			User user = new User();
 			user.setFirstName(registerUser.getFirstName());
 			user.setLastName(registerUser.getLastName());
 			user.setCity(registerUser.getCity());
-			System.out.println(user);
+			System.out.println("Cos powinno byc " + registerUser);
+			//System.out.println(user);
 			user.setPassword(registerUser.getPassword());
 			user.setIdD(registerUser.getIdR());
 			user.setEmail(registerUser.getEmail());
 			user.setPESEL(registerUser.getPESEL());
-			System.out.print(result.hasErrors());
+			user.setIdR(1);
+			//System.out.print(result.hasErrors());
 			iUserRepository.saveUser(user);
 		 
 		 return "/list";
