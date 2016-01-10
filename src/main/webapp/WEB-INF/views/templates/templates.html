@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
 <meta charset="UTF-8"/>
 <title>Insert title here</title>
 <style>
 body {
-    font-family: 'PlayfairDisplayRegular', "Georgia", serif;
+    font-family: 'PlayfairDisplayRegular', "Georgia", serif !important;
     }
 	
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -50,18 +50,27 @@ body {
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lista kandydatów na...<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Prezydenta</a></li>
+                  <li><a href="/dzejk/listCandidatePresident">Prezydenta</a></li>
+                  <li><a href="#">Przewodniczącego Partii</a></li>
+                  <li><a href="#">Głosującego</a></li>
+                </ul>
+              </li>
+                 <li th:if="${#authorization.expression('hasRole(''Admin'')')}" class="dropdown">
+                <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dodaj kandydatów...<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/dzejk/listCandidatePresident">Prezydenta</a></li>
                   <li><a href="#">Przewodniczącego Partii</a></li>
                   <li><a href="#">Głosującego</a></li>
                 </ul>
               </li>
               <li><a href="list">Nadchodzące wybory</a></li>
             </ul>
-            
+ 
             <ul class="nav navbar-nav navbar-right">
               <li  th:switch="${#authorization.expression('isAuthenticated()')}" class="active">
               	<a th:case="false" href="/dzejk/login"><i class="fa fa-sign-in fa-lg"></i> Zaloguj <span class="sr-only">(current)</span></a>
-              	<a th:case="true" th:href="j_spring_security_logout"><i class="fa fa-sign-in fa-lg fa-rotate-180"></i> Wyloguj <span class="sr-only">(current)</span></a>
+              	<form th:case="true" method="post">
+              	<a  th:href="j_spring_security_logout"><i class="fa fa-sign-in fa-lg fa-rotate-180"></i> Wyloguj <span class="sr-only">(current)</span></a></form>
               	</li>
               <li><a href="/dzejk/register"><i class="fa fa-user-plus fa-lg"></i> Zarejestruj</a></li>
               <li><a href="../navbar-fixed-top/"><i class="fa fa-info fa-lg"></i> O stronie</a></li>
@@ -73,6 +82,13 @@ body {
                'the user is logged in' : 
                'the user is NOT logged in'">
 </span>
+<div sec:authentication="name">
+    The value of the "name" property of the authentication object should appear here.
+</div>
+
+ <div th:if="${#authorization.expression('hasRole(''Admin'')')}">
+        This will only be displayed if authenticated user has role ROLE_ADMIN.
+    </div>
 </div>
 <div th:fragment="footer">
 <div class="row">

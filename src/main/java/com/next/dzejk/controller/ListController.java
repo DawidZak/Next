@@ -11,12 +11,12 @@ import com.next.dzejk.model.Candidate;
 @Controller
 public class ListController {
 
-			@RequestMapping(value="/list", method = RequestMethod.GET)
+			@RequestMapping(value="/listCandidatePresident", method = RequestMethod.GET)
 			//Nazwa metody PO RM nie ma wp³ywu na mapowanie
 			public ModelAndView list(){
 				
 				Candidate Candidate = new Candidate();
-				ModelAndView model = new ModelAndView("list");
+				ModelAndView model = new ModelAndView("listCandidatePresident");
 				
 ;
 				Candidate.setPartyMember(true);

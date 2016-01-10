@@ -9,7 +9,7 @@
 	
 	<http auto-config="true" use-expressions="true">
 		
-		<intercept-url pattern="/list" access="hasRole('ADMIN')" />
+<!-- 		<intercept-url pattern="/list" access="hasRole('ADMIN')" /> -->
 
 		
 		
@@ -18,7 +18,7 @@
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login-er1ror" username-parameter="pesel"
 			password-parameter="password" />
-		<logout logout-success-url="/logout" />
+		<logout logout-success-url="/login" />
 		<access-denied-handler error-page="/403/" />
 				
 		<csrf/>
@@ -26,11 +26,11 @@
 
 	<authentication-manager>
 	  <authentication-provider>
-<!-- 	  	<password-encoder hash="sha-256" /> -->
+	  	<password-encoder hash="bcrypt" />
 		<jdbc-user-service data-source-ref="dataSource"
 		  users-by-username-query=
 		    "SELECT pesel, password, 1 as enabled FROM USER WHERE pesel = ?"
-		  authorities-by-username-query= "SELECT r.name, u.pesel FROM ROLE r, USER u WHERE u.IDR = r.ID AND u.PESEL = ?"/>
+		  authorities-by-username-query= "SELECT u.pesel,r.name, u.idr FROM ROLE r, USER u WHERE u.IDR = r.ID AND u.PESEL = ?"/>
 	  </authentication-provider>
 	</authentication-manager>
 

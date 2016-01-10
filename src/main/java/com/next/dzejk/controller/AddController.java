@@ -2,6 +2,7 @@ package com.next.dzejk.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +32,7 @@ import com.next.dzejk.model.Region;
 import com.next.dzejk.model.User;
 import com.next.dzejk.services.ICandidateService;
 import com.next.dzejk.services.IUserService;
+import com.next.dzejk.services.Result;
 import com.next.dzejk.services.CandidateService;
 
 @Controller
@@ -55,44 +60,27 @@ public class AddController { // extends CandidateManager
 	
 	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST)
 	//public String submitForm(@ModelAttribute("registerUser") RegisterUser registerUser, BindingResult result, Model model ) {
-		public @ResponseBody  String saveUser(@Valid @ModelAttribute("registerUser")   RegisterUser registerUser,BindingResult result, HttpServletRequest request,  Model model){
-			System.out.println(result);
-			if (!result.hasErrors()){
-				//ValidationUtils.
-				User user = new User();
-				user.setFirstName(registerUser.getFirstName());
-				user.setLastName(registerUser.getLastName());
-				user.setCity(registerUser.getCity());
-				user.setPassword(registerUser.getPassword());
-				user.setIdD(registerUser.getIdD());
-				user.setEmail(registerUser.getEmail());
-				user.setPESEL(registerUser.getPESEL());
-				user.setIdR(1);
-				iUserRepository.saveUser(user);
-	
-			}
-			//ValidationUtils.
-		    System.out.println(registerUser.getIdD());
-		    System.out.println(registerUser.getCity());
-			User user = new User();
-			user.setFirstName(registerUser.getFirstName());
-			user.setLastName(registerUser.getLastName());
-			user.setCity(registerUser.getCity());
-			System.out.println("Cos powinno byc " + registerUser);
-			//System.out.println(user);
-			user.setPassword(registerUser.getPassword());
-			user.setIdD(registerUser.getIdR());
-			user.setEmail(registerUser.getEmail());
-			user.setPESEL(registerUser.getPESEL());
-			user.setIdR(1);
-			//System.out.print(result.hasErrors());
-			iUserRepository.saveUser(user);
-		 
-		 return "/list";
-}
+		public @ResponseBody  List<String> saveUser(@Valid @ModelAttribute("registerUser")   RegisterUser registerUser,BindingResult result, HttpServletRequest request,  Model model){
+			List<String> errors = new ArrayList<String>();
+			if (!result.hasErrors()){	
+				iUserRepository.saveUser(registerUser);
+				errors.add("SUCCESS");
+				return errors;
+			}else{
+				//List<Enum> result3 = new ArrayList<Enum>();			
+				List<FieldError> lista =  new ArrayList<FieldError>();
+				lista = result.getFieldErrors();
+				for (FieldError error : lista) {
+					errors.add(error.getField());
+					System.out.println("Blad" + error.getField());
+				}
+				return errors;
+			} //end else
+
+	} //end saveUser
 
 
-	}
+} //end class
 
 
-// https://www.youtube.com/watch?v=8V4ArtwNuwk
+
