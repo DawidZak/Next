@@ -30,19 +30,17 @@ import com.next.dzejk.form.RegisterUser;
 import com.next.dzejk.model.Candidate;
 import com.next.dzejk.model.Region;
 import com.next.dzejk.model.User;
-import com.next.dzejk.services.ICandidateService;
 import com.next.dzejk.services.IUserService;
 import com.next.dzejk.services.Result;
-import com.next.dzejk.services.CandidateService;
 
 @Controller
-public class AddController { // extends CandidateManager
+public class RegisterController { // extends CandidateManager
 	
 	@Autowired
 	IRegionRepository regionName;
 
-	@Autowired
-	private ICandidateService iCandidate; // private CandidateService bylo
+	//@Autowired
+	//private ICandidateService iCandidate; // private CandidateService bylo
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String AddCandidate(Model model) {

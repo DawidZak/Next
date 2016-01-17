@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-import com.next.dzejk.dao.ICandidateRepository;
 
 import com.next.dzejk.model.Candidate;
 import com.next.dzejk.model.User;
-import com.next.dzejk.services.ICandidateService;
 import com.next.dzejk.services.IUserService;
 import com.next.dzejk.services.UserService;
 

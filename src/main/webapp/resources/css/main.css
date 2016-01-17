@@ -18,3 +18,11 @@ color:#DC143C;
 .displayNone {
 	display:none;
 }	
+.footerInfo{
+	background-color: #EEE;
+}
+
+.footerInfo ul li {
+	list-style:none;
+	font-size: smaller;
+}
