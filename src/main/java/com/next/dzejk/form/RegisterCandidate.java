@@ -1,5 +1,9 @@
 package com.next.dzejk.form;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 import com.next.dzejk.model.User;
@@ -11,8 +15,11 @@ public class RegisterCandidate extends RegisterUser {
 
 	protected Integer ID ;
 	protected String Slogan;
-	protected Boolean partyMember;
+	@NotEmpty
+	protected String partyMember;
+	@NotNull @Digits(integer=3,fraction=0)
 	protected int age;
+	@NotEmpty
 	protected String degree;
 
 	public int getAge() {
@@ -39,10 +46,10 @@ public class RegisterCandidate extends RegisterUser {
 	public void setSlogan(String slogan) {
 		Slogan = slogan;
 	}
-	public Boolean getPartyMember() {
+	public String getPartyMember() {
 		return partyMember;
 	}
-	public void setPartyMember(Boolean partyMember) {
+	public void setPartyMember(String partyMember) {
 		this.partyMember = partyMember;
 	}
 	

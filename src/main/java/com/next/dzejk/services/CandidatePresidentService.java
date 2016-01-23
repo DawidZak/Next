@@ -38,6 +38,6 @@ public class CandidatePresidentService implements ICandidatePresidentService {
 	
 	@PostConstruct
 	void init(){
-	savePresidentCandidate(new RegisterCandidate());
+	//savePresidentCandidate(new RegisterCandidate());
 	}
 }

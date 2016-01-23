@@ -3,6 +3,8 @@ package com.next.dzejk.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -42,9 +44,10 @@ public class ListController {
 			}
 			
 			@RequestMapping(value="/sendCandidateData", method=RequestMethod.POST)
-			 String savePresidentCanidate(@ModelAttribute("registerCandidate") RegisterCandidate registerCandidate,BindingResult result, Model model){
+			 String savePresidentCanidate(@Valid @ModelAttribute("registerCandidate") RegisterCandidate registerCandidate,BindingResult result, Model model){
 				System.out.println(registerCandidate.getFirstName());
-				
+				System.out.println(registerCandidate.getAge());
+				System.out.println(result.getErrorCount());
 				iCandidatePresidentService.savePresidentCandidate(registerCandidate);
 				return "redirect:/listCandidatePresident";
 

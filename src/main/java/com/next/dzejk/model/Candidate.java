@@ -25,7 +25,7 @@ public class Candidate  {
 	protected String firstName;
 	protected String lastName;
 	protected String Slogan;
-	protected Boolean partyMember;
+	protected String partyMember;
 	protected int IDU;
 	public String getFirstName() {
 		return firstName;
@@ -45,17 +45,17 @@ public class Candidate  {
 	public void setSlogan(String slogan) {
 		Slogan = slogan;
 	}
-	public Boolean getPartyMember() {
-		return partyMember;
-	}
-	public void setPartyMember(Boolean partyMember) {
-		this.partyMember = partyMember;
-	}
 	public int getIDU() {
 		return IDU;
 	}
 	public void setIDU(int iDU) {
 		IDU = iDU;
+	}
+	public String getPartyMember() {
+		return partyMember;
+	}
+	public void setPartyMember(String partyMember) {
+		this.partyMember = partyMember;
 	} 
 	}
 
