@@ -17,11 +17,7 @@ import com.next.dzejk.model.User;
 import lombok.Data;
 @Data
 
-public class RegisterUser {
-	@NotEmpty
-	private String firstName;
-	@Size(min=3, message = "First name cannot be blank")
-	protected String lastName;
+public class RegisterUser extends AbstractRegister {
 	@NotEmpty
 	protected String password;
 	@NotEmpty @Digits(integer=3, fraction = 0)

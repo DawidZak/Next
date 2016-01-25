@@ -43,7 +43,7 @@ body {
 				<td th:text="${candidate.partyMember}">Zak</td>
 			</tbody>
 		</table>
-
+<!-- th:class="${#fields.hasErrors('degree')}? fieldError"  -->
 
 		<div th:if="${#authorization.expression('hasRole(''Admin'')')}"
 			class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -61,6 +61,7 @@ body {
 					<div class="modal-body">
 						<form method="post" role="form" th:object="${registerCandidate}"
 							th:action="sendCandidateData">
+							
 							<div class="form-group">
 								<label for="firstName">Imie</label> <input
 									th:field="${registerCandidate.firstName}" type="text"
@@ -75,20 +76,21 @@ body {
 								<div class="form-group">
 									<label for="degree">Wykształcenie</label> <input
 										th:field="${registerCandidate.degree}" type="text"
-										class="form-control" name="degree"
+										class="form-control" name="degree" 
 										placeholder="Podaj wykształcenie kandydata" />
 								</div>
 								<div class="form-group">
 									<label for="age">Podaj Wiek Kandydata</label> <input
 										th:field="${registerCandidate.age}" type="text"
-										class="form-control" name="age"
+										class="form-control" name="age" 
+										
 										placeholder="Podaj wiek kandydata" />
 								</div>
 										<div class="form-group">
-									<label for="partyMember">Podaj przynależność do partii</label> <input
-										th:field="${registerCandidate.partyMember}" type="text"
-										class="form-control" name="partyMember"
-										placeholder="Partia?" />
+									<label for="partyMember">Podaj przynależność do partii</label> 
+									    <select class="form-control " th:field="${registerCandidate.partyName}">
+  										<option   th:each="party : ${politicalPartys}"  th:text="${party.partyName}" th:field="${registerCandidate.partyName}" th:value="${party.partyName}"></option>
+										</select>	
 								</div>
 							</div>
 							<div class="form-group">

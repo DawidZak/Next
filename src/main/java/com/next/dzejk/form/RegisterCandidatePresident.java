@@ -11,12 +11,12 @@ import com.next.dzejk.model.User;
 import lombok.Data;
 
 
-public class RegisterCandidate extends RegisterUser {
+public class RegisterCandidatePresident extends AbstractRegister{
 
 	protected Integer ID ;
 	protected String Slogan;
 	@NotEmpty
-	protected String partyMember;
+	protected String partyName;
 	@NotNull @Digits(integer=3,fraction=0)
 	protected int age;
 	@NotEmpty
@@ -46,11 +46,12 @@ public class RegisterCandidate extends RegisterUser {
 	public void setSlogan(String slogan) {
 		Slogan = slogan;
 	}
-	public String getPartyMember() {
-		return partyMember;
+	public String getPartyName() {
+		return partyName;
 	}
-	public void setPartyMember(String partyMember) {
-		this.partyMember = partyMember;
+	public void setPartyName(String partyName) {
+		this.partyName = partyName;
 	}
+
 	
 }

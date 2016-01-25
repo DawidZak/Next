@@ -21,7 +21,8 @@ import lombok.Data;
  * 
  */
 @MappedSuperclass
-public class Candidate  {
+//@Entity
+public abstract class Candidate  {
 	protected String firstName;
 	protected String lastName;
 	protected String Slogan;
