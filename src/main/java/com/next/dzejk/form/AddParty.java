@@ -8,9 +8,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class AddParty {
 	@NotEmpty
 	private String partyName;
-	@NotEmpty
+	//@NotEmpty
 	private String partyPresident;
-	@NotEmpty
+//	@NotEmpty
 	private String wing;
 	@NotNull @Digits(integer=10,fraction=0)
 	private int countMembers;

@@ -102,14 +102,17 @@ public class ListController {
 				
 			}
 			@RequestMapping(value="/politicalPartySend", method=RequestMethod.POST)
-			String partyPresidsent(@Valid @ModelAttribute("partyForm") AddParty party, Model model, BindingResult result  ){
-				//List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
-				System.out.println(result.getErrorCount());
-				if(result.hasErrors()){
-				//Obsluga
-				}else {
+			//String partyPresidsent(@Valid @ModelAttribute("partyForm") AddParty party, Model model, BindingResult result){
+			String partyPresidsentSave(@ModelAttribute("partyForm") AddParty party ){	
+			//List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
+//				System.out.println(result.getErrorCount());
+//				if(result.hasErrors()){
+//				//Obsluga
+//				}else {
+
+				
 				iPoliticalPartyService.addPoliticalParty(party);	
-				}
+//				}
 				return "redirect:/politicalParty";
 			}
 			
