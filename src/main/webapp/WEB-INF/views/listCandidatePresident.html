@@ -91,6 +91,8 @@ body {
 									    <select class="form-control " th:field="${registerCandidate.partyName}">
   										<option   th:each="party : ${politicalPartys}"  th:text="${party.partyName}" th:field="${registerCandidate.partyName}" th:value="${party.partyName}"></option>
 										</select>	
+										
+										
 								</div>
 							</div>
 							<div class="form-group">

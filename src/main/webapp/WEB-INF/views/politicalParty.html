@@ -23,7 +23,7 @@ body {
 
 		<button th:if="${#authorization.expression('hasRole(''Admin'')')}"
 			type="button" class="btn btn-primary pull-right red-button"
-			data-toggle="modal" data-target="#myModal">Dodaj Kandydata</button>
+			data-toggle="modal" data-target="#myModal">Dodaj Partie</button>
 		<table class="table table-hover table-striped table-bordered">
 			<thead>
 				<tr>
@@ -53,11 +53,45 @@ body {
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Dodaj Kandydata Na
-							Prezydenta</h4>
+						<h4 class="modal-title" id="myModalLabel">Dodaj Partie Polityczną</h4>
 					</div>
 					<div class="modal-body">
-			
+							<form method="post" role="form" th:object="${partyForm}"
+							th:action="politicalPartySend">
+							
+							<div class="form-group">
+								<label for="partyName">Nazwa</label> <input
+									th:field="${partyForm.partyName}" type="text"
+									class="form-control" name="partyName"
+									placeholder="Podaj nazwę partii" />
+							</div>
+							<div class="form-group">
+								<label for="partyPresident">Przewodniczący partii</label> <input
+									th:field="${partyForm.partyPresident}" type="text"
+									class="form-control" name="firstName"
+									placeholder="Podaj imie i nazwisko przewodniczącego" />
+								<div class="form-group">
+									<label for="wing">Orientacja(?)</label> <input
+										th:field="${partyForm.wing}" type="text"
+										class="form-control" name="wing" 
+										placeholder="Podaj orientacje(?)" />
+								</div>
+								<div class="form-group">
+									<label for="wing">Ilość członków</label> <input
+										th:field="${partyForm.countMembers}" type="number"
+										class="form-control" name="wing" 
+										placeholder="Podaj ilość członków" />
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Zamknij</button>
+								<button type="submit" class="btn btn-primary red-button">Zapisz</button>
+
+							</div>
+
+
+						</form>
 					</div>
 
 				</div>

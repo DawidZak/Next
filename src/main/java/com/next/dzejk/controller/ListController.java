@@ -24,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.next.dzejk.dao.ICandidatePartyPresidentRepository;
 import com.next.dzejk.dao.ICandidatePresidentRepository;
+import com.next.dzejk.form.AddParty;
+import com.next.dzejk.form.RegisterCandidateParty;
 import com.next.dzejk.form.RegisterCandidatePresident;
 import com.next.dzejk.form.RegisterUser;
 import com.next.dzejk.model.Candidate;
@@ -46,6 +48,8 @@ public class ListController {
 		
 		@Autowired
 		ICandidatePartyPresidentService iCandidatePartyPresident;
+		
+
 		
 		public static final String POLITICAL_PARTY_LIST = "politicalParty";
 		public static final String POLITICAL_PARTY_CANDIDATES_PRESIDENT = "politicalPartyCandidatesPresidents";	
@@ -88,20 +92,46 @@ public class ListController {
 				
 			}
 			@RequestMapping(value="/politicalParty", method=RequestMethod.GET)
-			String partyPresident(Model model){
+			String partyPresident(Model model ){
 				List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
 				model.addAttribute("politicParty", politicParty);
 				//iPoliticalPartyService.saveCandidateById("sadas", 0);
+				model.addAttribute("partyForm", new AddParty());
 				return POLITICAL_PARTY_LIST;
 
 				
 			}
+			@RequestMapping(value="/politicalPartySend", method=RequestMethod.POST)
+			String partyPresidsent(@Valid @ModelAttribute("partyForm") AddParty party, Model model, BindingResult result  ){
+				//List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
+				System.out.println(result.getErrorCount());
+				if(result.hasErrors()){
+				//Obsluga
+				}else {
+				iPoliticalPartyService.addPoliticalParty(party);	
+				}
+				return "redirect:/politicalParty";
+			}
+			
 			@RequestMapping(value="/politicalPartyCandidatesPresident", method=RequestMethod.GET)
 			String partyCandidates(Model model){
-				List<CandidatePartyPresident>  candidatePartyPresident = iCandidatePartyPresident.findAll();
-				model.addAttribute("candidatePartyPresident ",candidatePartyPresident );
-				model.addAttribute("politicalPartyCandidatePresident", new RegisterCandidatePresident());
+				List<CandidatePartyPresident>  candidatePartyPresident = iCandidatePartyPresident.findAllCandidates();
+				model.addAttribute("candidatePartyPresident",candidatePartyPresident );
+				List<PoliticalParty> politicalParty = iPoliticalPartyService.findAll();  
+				model.addAttribute("politicalPartyCandidateParty", new RegisterCandidateParty());
+				model.addAttribute("politicalPartys", politicalParty);
 				return POLITICAL_PARTY_CANDIDATES_PRESIDENT;
+			}
+			
+			@RequestMapping(value="/politicalPartyCandidatesPresidentSend", method=RequestMethod.POST)
+			String savePartyCandidates(@Valid @ModelAttribute("politicalPartyCandidateParty")RegisterCandidateParty candidate,BindingResult result, Model model){
+				if(!result.hasErrors()){
+				iCandidatePartyPresident.saveCandidatePartyPresident(candidate);
+				}
+				else{
+					//obsluga;
+				}
+				return "redirect:/" + "politicalPartyCandidatesPresident";
 			}
 }
 

@@ -7,21 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 
 import org.h2.engine.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.next.dzejk.dao.IPolitcalPartyRepository;
+import com.next.dzejk.form.AddParty;
 import com.next.dzejk.model.PoliticalParty;
+import com.next.dzejk.model.User;
 @Service
 public class PoliticalPartyService implements IPoliticalPartyService {
-
 
 	@Autowired
 	IPolitcalPartyRepository politicalPartyRepository;
 	
 	@Override
-	public PoliticalParty addPoliticalParty(PoliticalParty party) {
+	public PoliticalParty addPoliticalParty(AddParty partyForm) {
+		PoliticalParty party = new PoliticalParty();
+		party.setKind(partyForm.getWing());
+		party.setPartyName(partyForm.getPartyName());
+		party.setPartyPresident(partyForm.getPartyPresident());
+		party.setCountMembers(partyForm.getCountMembers());
 		return 	politicalPartyRepository.save(party);
 		
 	}
@@ -37,20 +45,12 @@ public class PoliticalPartyService implements IPoliticalPartyService {
 		
 		return null;
 	}
-	
+
+    
 	@PostConstruct
 	void init() {
-		politicalPartyRepository.save(new PoliticalParty("Polska Silna", 43, "Right", "Andrew") );
-		//Pobieram sobie po partie po ID
-		PoliticalParty a = politicalPartyRepository.findOne(0);
-		//Sprawdzam czy dobrze pobralem
-		System.out.println(a.getPartyName());
-		//Kasuje a
-		//politicalPartyRepository.delete(a);
-		//Ustawiam sobie kandytdata
-		//a.setCandidatePresident("dasdasdasd1a");
-		//Zapisuje od nowa z nowa wartoscia
-		politicalPartyRepository.save(politicalPartyRepository.findOne(0));
+		politicalPartyRepository.save(new PoliticalParty(0,"Polska Silna", 43, "Right", "Andrew") );
+	
 	}
 
 	
