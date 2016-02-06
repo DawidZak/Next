@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import lombok.Data;
 @Data
 public abstract class AbstractRegister {
+	protected int ID;
 	@NotEmpty
 	protected String firstName;
 	@Size(min=3, message = "First name cannot be blank")

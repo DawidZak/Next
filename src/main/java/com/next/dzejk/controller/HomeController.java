@@ -11,13 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
-
-import com.next.dzejk.model.Candidate;
 import com.next.dzejk.model.User;
 import com.next.dzejk.services.IUserService;
-import com.next.dzejk.services.UserService;
 
 /**
  * Handles requests for the application home page.

@@ -11,5 +11,6 @@ import com.next.dzejk.model.CandidatePartyPresident;
 public interface ICandidatePartyPresidentService {
 	CandidatePartyPresident saveCandidatePartyPresident(RegisterCandidateParty cpp);
 	List<CandidatePartyPresident> findAllCandidates();
-	
+	void deleteCandidatePartyPresidentById(int id);
+	void updateCandidatePartyPresidentById (int id);
 }

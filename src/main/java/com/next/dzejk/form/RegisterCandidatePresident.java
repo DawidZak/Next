@@ -4,16 +4,11 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.stereotype.Component;
-
-import com.next.dzejk.model.User;
-
-import lombok.Data;
 
 
 public class RegisterCandidatePresident extends AbstractRegister{
 
-	protected Integer ID ;
+	//protected Integer ID ;
 	protected String Slogan;
 	@NotEmpty
 	protected String partyName;
@@ -34,7 +29,7 @@ public class RegisterCandidatePresident extends AbstractRegister{
 	public void setDegree(String degree) {
 		this.degree = degree;
 	}
-	public Integer getID() {
+	public int getID() {
 		return ID;
 	}
 	public void setID(Integer iD) {

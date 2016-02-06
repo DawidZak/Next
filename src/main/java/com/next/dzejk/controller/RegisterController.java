@@ -1,37 +1,24 @@
 package com.next.dzejk.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.next.dzejk.dao.IRegionRepository;
 import com.next.dzejk.form.RegisterUser;
-//import com.next.dzejk.CandidateManager;
-import com.next.dzejk.model.Candidate;
 import com.next.dzejk.model.Region;
-import com.next.dzejk.model.User;
 import com.next.dzejk.services.IUserService;
-import com.next.dzejk.services.Result;
 
 @Controller
 public class RegisterController { // extends CandidateManager

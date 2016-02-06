@@ -35,6 +35,22 @@ public class CandidatePartyPresidentService implements ICandidatePartyPresidentS
 		
 		return iCandidatePartyPresident.save(candidatePresidentParty);
 	}
+
+	@Override
+	public void deleteCandidatePartyPresidentById(int id) {
+		iCandidatePartyPresident.delete(id);
+		
+	}
+
+
+
+
+	@Override
+	public void updateCandidatePartyPresidentById(int id) {
+		iCandidatePartyPresident.findOne(id);
+		System.out.println("UPDATE  findOne" + iCandidatePartyPresident.findOne(id));
+		System.out.println("UPDATE  getOne " +iCandidatePartyPresident.getOne(id));
+	}
 	
 
 

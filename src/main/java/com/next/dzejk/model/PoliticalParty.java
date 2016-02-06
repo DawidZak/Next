@@ -4,10 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.NamedQuery;
-
 import lombok.Data;
-import lombok.Getter;
 @Data
 @Entity
 public class PoliticalParty {

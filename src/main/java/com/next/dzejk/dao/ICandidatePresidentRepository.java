@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.next.dzejk.model.CandidatePresident;
-import com.next.dzejk.model.Region;
 
 @Repository 
 @Transactional

@@ -3,8 +3,6 @@ package com.next.dzejk.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.springframework.stereotype.Component;
 @Entity
 
 public class CandidatePresident extends Candidate {
