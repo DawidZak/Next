@@ -18,10 +18,11 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
-import org.thymeleaf.spring3.SpringTemplateEngine;
-import org.thymeleaf.spring3.view.ThymeleafViewResolver;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+
 
 
 
@@ -80,15 +81,15 @@ public class Config  {
      * @return LocalContainerEntityManagerFactoryBean zawierajace ustawienia
      *         polaczenia z baza danych.
      */
-//    @Bean
-//    public LocalSessionFactoryBean sessionFactory() {
-//       LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-//       sessionFactory.setDataSource(dataSource());
-//       sessionFactory.setPackagesToScan(new String[] { "com.next" });
-//       sessionFactory.setHibernateProperties(additionalProperties());
-//  
-//       return sessionFactory;
-//    }
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() {
+       LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+       sessionFactory.setDataSource(dataSource());
+       sessionFactory.setPackagesToScan(new String[] { "com.next" });
+       sessionFactory.setHibernateProperties(additionalProperties());
+  
+       return sessionFactory;
+    }
     
     @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

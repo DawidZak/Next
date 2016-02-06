@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <title>Home</title>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -21,7 +21,7 @@ body {
 	<div class="container">
 		<div th:replace="templates/templates::menu"></div>
 
-		<button th:if="${#authorization.expression('hasRole(''Admin'')')}"
+		<button th:if="${#authorization.expression('hasAuthority(''Admin'')')}"
 			type="button" class="btn btn-primary pull-right red-button"
 			data-toggle="modal" data-target="#myModal">Dodaj Partie</button>
 		<table class="table table-hover table-striped table-bordered">
@@ -43,7 +43,7 @@ body {
 		</table>
 <!-- th:class="${#fields.hasErrors('degree')}? fieldError"  -->
 
-		<div th:if="${#authorization.expression('hasRole(''Admin'')')}"
+		<div th:if="${#authorization.expression('hasAuthority(''Admin'')')}"
 			class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">

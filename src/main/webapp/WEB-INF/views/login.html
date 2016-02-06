@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <title>Home</title>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -16,7 +16,7 @@
 						<ol><li>By się zalogować podaj swój numer PESEL w polu o nazwie PESEL.</li> <li>W polu Hasło wpisz ustanowione przez siebie hasło.
 </li></ol>
 
-						<form method="post" role="form" th:action="@{/j_spring_security_check}">
+						<form method="post" role="form" th:action="@{/login}">
 							<div class="form-group">
 								<label for="exampleInputEmail1">PESEL</label> <input
 									type="text" class="form-control" id="exampleInputEmail1" name="pesel"

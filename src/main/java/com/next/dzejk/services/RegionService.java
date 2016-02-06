@@ -8,13 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.next.dzejk.dao.IRegionRepository;
+import com.next.dzejk.dao.IUserRepository;
+import com.next.dzejk.form.RegisterUser;
 import com.next.dzejk.model.Region;
+import com.next.dzejk.model.User;
 
 @Service
-public class RegionService implements IRegionService {
+public class RegionService implements IRegionService{
 	
 	@Autowired
 	IRegionRepository regionName;
+	
+
+	
 	
 	@Override
 	public Region saveRegion(Region district) {
@@ -42,6 +48,7 @@ public class RegionService implements IRegionService {
 		 saveRegion(new Region("Pomorskie"));
 		 saveRegion(new Region("Œl¹skie"));
 		 saveRegion(new Region("Œwiêtokrzyskie"));
+			//saveInitUser(new User("Imie1", "Nazwisko1","12","12","wp.pl","Lodz",4,4));
 
 	}
 
@@ -56,4 +63,6 @@ public class RegionService implements IRegionService {
 		
 		return regionName.findAll();
 	}
+
+
 }
