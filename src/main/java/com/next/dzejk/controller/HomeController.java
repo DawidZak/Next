@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.next.dzejk.dao.IPolitcalPartyRepository;
 import com.next.dzejk.model.PoliticalParty;
 import com.next.dzejk.model.User;
+import com.next.dzejk.services.ICandidatePartyPresidentService;
 import com.next.dzejk.services.IUserService;
 
 /**
@@ -38,9 +39,11 @@ public class HomeController {
 	@Autowired
 	IPolitcalPartyRepository politicalPartyRepository;
 	
-	@Autowired
-	SessionFactory sessionFactory;
+//	@Autowired
+//	SessionFactory sessionFactory;
 	
+	@Autowired
+	ICandidatePartyPresidentService icpp;
 	int i=0;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -53,8 +56,9 @@ public class HomeController {
 		
 		}
 		
+	
 		User user = new User();
-
+		//sessionFactory.getCurrentSession().saveOrUpdate(user);
 //		user.setBornDate("dsdsds");
 //		user.setPESEL("123456789");
 //		user.setPassword("12");

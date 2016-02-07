@@ -12,5 +12,5 @@ public interface ICandidatePartyPresidentService {
 	CandidatePartyPresident saveCandidatePartyPresident(RegisterCandidateParty cpp);
 	List<CandidatePartyPresident> findAllCandidates();
 	void deleteCandidatePartyPresidentById(int id);
-	void updateCandidatePartyPresidentById (int id);
+	void updateCandidatePartyPresident(RegisterCandidateParty cpp) throws Exception;
 }
