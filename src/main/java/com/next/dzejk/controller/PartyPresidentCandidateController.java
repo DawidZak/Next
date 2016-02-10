@@ -57,10 +57,25 @@ public class PartyPresidentCandidateController {
 		
 		System.out.println(candidate.getID());
 		
-		//iCandidatePartyPresident.updateCandidatePartyPresidentById(candidate.getID());
+		try {
+			iCandidatePartyPresident.updateCandidatePartyPresident(candidate);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		iCandidatePartyPresident.deleteCandidatePartyPresidentById(candidate.getID());
 		return REDIRECT_TO_POLITICAL_PARTY_CANDIDATES_PRESIDENT;
 
+		
+		
+	}
+
+	@RequestMapping(value="/politicalPartyCandidatesPresidentEdit", method=RequestMethod.POST)
+	String editPartyCandidate(@ModelAttribute("politicalPartyCandidatePartyEdit")RegisterCandidateParty candidate ,Model model) throws Exception{
+		
+		iCandidatePartyPresident.updateCandidatePartyPresident(candidate);
+		
+		return REDIRECT_TO_POLITICAL_PARTY_CANDIDATES_PRESIDENT;
 		
 		
 	}

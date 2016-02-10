@@ -37,7 +37,7 @@ public class CandidatePartyPresidentService implements ICandidatePartyPresidentS
 	@Override
 	public void updateCandidatePartyPresident(RegisterCandidateParty cpp) throws Exception{
 		CandidatePartyPresident candidatePresidentParty = new CandidatePartyPresident();
-		candidatePresidentParty.setID(1);
+		candidatePresidentParty.setID(cpp.getID());
 		candidatePresidentParty.setFirstName("dawid");
 		System.out.println("Update");
 		Session sess = sessionFactory.openSession();
