@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.next.dzejk.dao.IUserRepository;
@@ -25,22 +26,24 @@ public class UserService implements IUserService {
 	@Override
 	public User saveUser(RegisterUser registerUser) {
 		int i = 0;
-		String hashedPassword=null;
+		//String hashedPassword=null;
 			String login = registerUser.getPESEL();
 			String password = registerUser.getPassword();
 			System.out.println(password);
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			hashedPassword = passwordEncoder.encode(password);
-			String hashedLogin = passwordEncoder.encode(login);
-			System.out.println(hashedPassword);
+//			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//			hashedPassword = passwordEncoder.encode(password);
+//			String hashedLogin = passwordEncoder.encode(login);
+//			System.out.println(hashedPassword);
 			i++;
-		
+			
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String hashedPassword = passwordEncoder.encode(registerUser.getPassword());
 		
 		User user = new User();
 		user.setFirstName(registerUser.getFirstName());
 		user.setLastName(registerUser.getLastName());
 		user.setCity(registerUser.getCity());
-		user.setPassword(registerUser.getPassword());
+		user.setPassword(hashedPassword);
 		user.setIdD(registerUser.getIdD());
 		user.setEmail(registerUser.getEmail());
 		user.setPESEL(registerUser.getPESEL());

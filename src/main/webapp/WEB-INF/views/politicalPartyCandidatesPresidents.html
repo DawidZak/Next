@@ -181,8 +181,11 @@ font-size: 20px;
 							</div>
 							<div class="form-group">
 							<label for="party">Partia</label>
-							<input id="party" type="text" class="form-control" value=""  name="party" placeholder="Podaj imie kandydata" />
-							</div>
+							
+							 <select class="form-control " th:field="${politicalPartyCandidateParty.partyMember}">
+  										<option th:each="party : ${politicalPartys}"  th:text="${party.partyName}" th:field="${politicalPartyCandidateParty.partyMember}" th:value="${party.partyName}"></option>
+										</select>	
+										</div>
 							<div class="form-group">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">Zamknij</button>

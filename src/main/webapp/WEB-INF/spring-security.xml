@@ -6,40 +6,40 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	<!-- Konfiguracja Spring Security -->
-	
-	<http auto-config="true" use-expressions="true">
-		
-<!-- 		<intercept-url pattern="/list" access="hasRole('ADMIN')" /> -->
 
-		
-		
-		
-		
+	<http auto-config="true" use-expressions="true">
+
+		<!-- <intercept-url pattern="/list" access="hasRole('ADMIN')" /> -->
+
+
+
+
+
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login-er1ror" username-parameter="pesel"
 			password-parameter="password" />
 		<logout logout-success-url="/login" />
 		<access-denied-handler error-page="/403/" />
-				
-		<csrf/>
+
+		<csrf />
 	</http>
 
 	<authentication-manager>
-	  <authentication-provider>
-<!-- 	  	<password-encoder hash="bcrypt" /> -->
-	  	
-		<jdbc-user-service data-source-ref="dataSource"
-		  users-by-username-query=
-		    "SELECT pesel, password, 1 as enabled FROM USER WHERE pesel = ?"
-		  authorities-by-username-query= "SELECT u.pesel,r.name, u.idr FROM ROLE r, USER u WHERE u.IDR = r.ID AND u.PESEL = ?"/>
-	  </authentication-provider>
+		<authentication-provider>
+			<password-encoder hash="bcrypt" />
+
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="SELECT pesel, password, 1 as enabled FROM USER WHERE pesel = ?"
+				authorities-by-username-query="SELECT u.pesel,r.name, u.idr FROM ROLE r, USER u WHERE u.IDR = r.ID AND u.PESEL = ?" />
+		</authentication-provider>
 	</authentication-manager>
 
-   <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <beans:property name="driverClassName" value="org.h2.Driver" />
-    <beans:property name="url" value="jdbc:h2:tcp://localhost/~/Next1" />
-    <beans:property name="username" value="sa" />
-    <beans:property name="password" value="sa" />
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="org.h2.Driver" />
+		<beans:property name="url" value="jdbc:h2:tcp://localhost/~/Next1" />
+		<beans:property name="username" value="sa" />
+		<beans:property name="password" value="sa" />
 	</beans:bean>
 
 </beans:beans>

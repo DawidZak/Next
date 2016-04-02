@@ -38,7 +38,9 @@ public class CandidatePartyPresidentService implements ICandidatePartyPresidentS
 	public void updateCandidatePartyPresident(RegisterCandidateParty cpp) throws Exception{
 		CandidatePartyPresident candidatePresidentParty = new CandidatePartyPresident();
 		candidatePresidentParty.setID(cpp.getID());
-		candidatePresidentParty.setFirstName("dawid");
+		candidatePresidentParty.setFirstName(cpp.getFirstName());
+		candidatePresidentParty.setLastName(cpp.getLastName());
+		candidatePresidentParty.setPartyMember(cpp.getPartyMember());
 		System.out.println("Update");
 		Session sess = sessionFactory.openSession();
 		Transaction tx = null;

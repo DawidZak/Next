@@ -2,6 +2,7 @@ package com.next.dzejk;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -41,7 +42,8 @@ public class Config  {
      */
     
     private String driver = "org.h2.Driver" ;
-
+    
+    
     /**
      * Adres bazy.
      */
@@ -156,7 +158,7 @@ public class Config  {
      * @return obiekt Properties zawierajacy wlasciwosci automatycznego
      *         tworzenia bazy.
      */
-    Properties additionalProperties() {
+    protected Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
         properties.setProperty("hibernate.dialect", dialect);

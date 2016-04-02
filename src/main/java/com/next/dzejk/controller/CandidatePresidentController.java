@@ -22,52 +22,51 @@ import com.next.dzejk.services.IPoliticalPartyService;
 //Kontroler odpowiedzialny za wyœwietlenie listy kandydatów
 @Controller
 public class CandidatePresidentController {
+	
+	private static final String NAZWA_RETURNA = "";
 
-		@Autowired 
-		ICandidatePresidentService iCandidatePresidentService;
-		
+	@Autowired
+	ICandidatePresidentService iCandidatePresidentService;
+
+	@Autowired
+	ICandidatePartyPresidentService iCandidatePartyPresident;
+
+	@Autowired
+	IPoliticalPartyService iPoliticalPartyService;
+
+	public static final String POLITICAL_PARTY_LIST = "politicalParty";
+
+	@RequestMapping(value = "/listCandidatePresident", method = RequestMethod.GET)
+	// Nazwa metody PO RM nie ma wp³ywu na mapowanie
+	public String list(Model model) {
+		List<CandidatePresident> candidates = iCandidatePresidentService.findAll();
+		List<PoliticalParty> politicalParty = iPoliticalPartyService.findAll();
+		model.addAttribute("registerCandidate", new RegisterCandidatePresident());
+		model.addAttribute("politicalPartys", politicalParty);
+		model.addAttribute("candidates", candidates);
+		return "listCandidatePresident";
+
+	}
+
+	@RequestMapping(value = "/sendCandidateData", method = RequestMethod.POST)
+	String savePresidentCanidate(
+			@Valid @ModelAttribute("registerCandidate") RegisterCandidatePresident registerCandidate,
+			BindingResult result, Model model) {
+		System.out.println(registerCandidate.getFirstName());
+		System.out.println(registerCandidate.getAge());
 
 		
-		@Autowired
-		ICandidatePartyPresidentService iCandidatePartyPresident;
+		if (result.hasErrors()) {
+			result.addError(new FieldError("registerCandidate", "degree", "defaultMessage"));
+		}
 		
-		
-		@Autowired
-		IPoliticalPartyService iPoliticalPartyService;
-		
-		public static final String POLITICAL_PARTY_LIST = "politicalParty";
-			
-		@RequestMapping(value="/listCandidatePresident", method = RequestMethod.GET)
-			//Nazwa metody PO RM nie ma wp³ywu na mapowanie
-			public String list(Model model){
-				List<CandidatePresident> candidates = iCandidatePresidentService.findAll();
-				List<PoliticalParty> politicalParty = iPoliticalPartyService.findAll();  
-				model.addAttribute("registerCandidate", new RegisterCandidatePresident());
-				model.addAttribute("politicalPartys", politicalParty);
-				model.addAttribute("candidates", candidates);
-				return "listCandidatePresident";
-				
-			}
-			
-			@RequestMapping(value="/sendCandidateData", method=RequestMethod.POST)
-			 String savePresidentCanidate(@Valid @ModelAttribute("registerCandidate") RegisterCandidatePresident registerCandidate,BindingResult result, Model model){
-				System.out.println(registerCandidate.getFirstName());
-				System.out.println(registerCandidate.getAge());
-				if (!result.hasErrors()){
-					iCandidatePresidentService.savePresidentCandidate(registerCandidate);	
-				}else
-				{	
-					result.addError(new FieldError("registerCandidate", "degree", "defaultMessage"));
-				}
-				
-				return "redirect:/listCandidatePresident";
+		iCandidatePresidentService.savePresidentCandidate(registerCandidate);
 
-			}
+		return "redirect:/listCandidatePresident";
 
-
-			
+	}
 
 }
 
-//TODO
-//http://www.tutorialspoint.com/spring/spring_mvc_form_handling_example.htm
+// TODO:
+// http://www.tutorialspoint.com/spring/spring_mvc_form_handling_example.htm

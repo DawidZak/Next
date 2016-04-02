@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +25,8 @@ import com.next.dzejk.services.IUserService;
  */
 @Controller 
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 
-	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
 	IUserService iUserRepository;
@@ -39,48 +34,31 @@ public class HomeController {
 	@Autowired
 	IPolitcalPartyRepository politicalPartyRepository;
 	
-//	@Autowired
-//	SessionFactory sessionFactory;
-	
 	@Autowired
 	ICandidatePartyPresidentService icpp;
+	
 	int i=0;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+	
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+		//PropertyConfigurator.configure(properties);
 		if (i==0){
 		politicalPartyRepository.save(new PoliticalParty(0,"Polska Silna", 43, "Right", "Andrew") );	
 		iUserRepository.saveInitUser(new User("Imie1", "Nazwisko1","12","12","wp.pl","Lodz",4,4));
 		i++;
-		
 		}
-		
-	
 		User user = new User();
-		//sessionFactory.getCurrentSession().saveOrUpdate(user);
-//		user.setBornDate("dsdsds");
-//		user.setPESEL("123456789");
-//		user.setPassword("12");
-//		user.setIdR(2);
-		
-
-		System.out.println(user);
-		//iUserRepository.saveUser(user);
-		  
+		System.out.println(user);		  
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
 		String formattedDate = dateFormat.format(date);
-
 		model.addAttribute("serverTime", formattedDate );
-		
 		return "home";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(){
-		
 		return "login";
 	}
 	

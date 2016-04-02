@@ -1,10 +1,1 @@
-1.Validatory do formularzy AddParty, Candidate, Voter
-2.Przemylesc czy kompozycja z wykorzytsaniem Person - moge odniesc sie do pol jako formularza klasy np Voter
-3.Przerobic strone
-4.Stworzyc UMLa
-5.Stworzyc zasady ogolny zarys projektu
-	a)System ma umozliwiac rejestracje parti politycznych, kandydatow na prezydenta, glosujacych
-	b)Umozliwiac glosowanie 
-	c)Posiadac proces koaczyc dane glosowanie o okreslonej godzinie
-	d)Dane zapisywane w bazie
-	e)Front z wykorzystaniem jQuery i Ajax
+C:\Spring\sts-bundle\pivotal-tc-server-developer-3.1.2.RELEASE\tomcat-8.0.26.B.RELEASE\logs

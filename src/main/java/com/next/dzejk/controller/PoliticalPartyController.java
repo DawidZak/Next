@@ -21,6 +21,7 @@ public class PoliticalPartyController {
 	
 	public static final String POLITICAL_PARTY_LIST = "politicalParty";
 	public static final String REDIRECT_TO_POLITICAL_PARTY_LIST = "redirect:/politicalParty";
+	
 	@RequestMapping(value="/politicalParty", method=RequestMethod.GET)
 	String partyPresident(Model model ){
 		List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
