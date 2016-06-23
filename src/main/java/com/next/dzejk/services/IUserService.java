@@ -8,5 +8,5 @@ public interface IUserService {
 	User saveInitUser(User user);
 	
 	User saveUser(RegisterUser registerUser);
-
+	User updateUser (String pesel);
 }

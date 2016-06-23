@@ -26,24 +26,15 @@ public class PoliticalPartyController {
 	String partyPresident(Model model ){
 		List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
 		model.addAttribute("politicParty", politicParty);
-		//iPoliticalPartyService.saveCandidateById("sadas", 0);
 		model.addAttribute("partyForm", new AddParty());
 		return POLITICAL_PARTY_LIST;
 
 		
 	}
 	@RequestMapping(value="/politicalPartySend", method=RequestMethod.POST)
-	//String partyPresidsent(@Valid @ModelAttribute("partyForm") AddParty party, Model model, BindingResult result){
+	
 	String partyPresidsentSave(@ModelAttribute("partyForm") AddParty party ){	
-	//List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
-//		System.out.println(result.getErrorCount());
-//		if(result.hasErrors()){
-//		//Obsluga
-//		}else {
-
-		
-		iPoliticalPartyService.addPoliticalParty(party);	
-//		}
+		iPoliticalPartyService.addPoliticalParty(party);			
 		return REDIRECT_TO_POLITICAL_PARTY_LIST;
 	}
 }

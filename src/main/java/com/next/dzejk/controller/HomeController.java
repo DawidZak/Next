@@ -4,11 +4,12 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.apache.log4j.PropertyConfigurator;
-import org.hibernate.SessionFactory;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,8 @@ import com.next.dzejk.services.IUserService;
  * Handles requests for the application home page.
  */
 @Controller 
+@Scope("request")
+
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -37,19 +40,25 @@ public class HomeController {
 	@Autowired
 	ICandidatePartyPresidentService icpp;
 	
+	@Autowired
+	User user;
 	int i=0;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-	
+		//System.out.println("Widzisz?" +session.getId());
+		user.setCity("scope?");
+		logger.info("No czeœæ","g");
+		System.out.println(user.getCity());
 		logger.info("Welcome home! The client locale is {}.", locale);
-		//PropertyConfigurator.configure(properties);
 		if (i==0){
 		politicalPartyRepository.save(new PoliticalParty(0,"Polska Silna", 43, "Right", "Andrew") );	
-		iUserRepository.saveInitUser(new User("Imie1", "Nazwisko1","12","12","wp.pl","Lodz",4,4));
+		iUserRepository.saveInitUser(new User("Imie1", "Nazwisko1","1332","1233","wp.pl","Lodz",4,4));
 		i++;
 		}
+		logger.info("USER" , user.getCity());
 		User user = new User();
-		System.out.println(user);		  
+		
+		logger.info("Uzytkownik"+ user);		  
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);

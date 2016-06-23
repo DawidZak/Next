@@ -26,3 +26,6 @@ color:#DC143C;
 	list-style:none;
 	font-size: smaller;
 }
+.navbar-default .navbar-nav>li>a:hover {
+color: #DC143C !important;
+}

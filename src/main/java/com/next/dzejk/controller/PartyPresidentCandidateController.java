@@ -19,6 +19,7 @@ import com.next.dzejk.services.ICandidatePartyPresidentService;
 import com.next.dzejk.services.IPoliticalPartyService;
 
 @Controller
+@RequestMapping(value="/candidate/")
 public class PartyPresidentCandidateController {
 
 	@Autowired
@@ -30,7 +31,7 @@ public class PartyPresidentCandidateController {
 	public static final String POLITICAL_PARTY_CANDIDATES_PRESIDENT = "politicalPartyCandidatesPresidents";	
 	public static final String REDIRECT_TO_POLITICAL_PARTY_CANDIDATES_PRESIDENT ="redirect:/politicalPartyCandidatesPresident" ;
 	
-	@RequestMapping(value="/politicalPartyCandidatesPresident", method=RequestMethod.GET)
+	@RequestMapping(value="/politicalPartyPresident", method=RequestMethod.GET)
 	String partyCandidates(Model model){
 		List<CandidatePartyPresident>  candidatePartyPresident = iCandidatePartyPresident.findAllCandidates();
 		model.addAttribute("candidatePartyPresident",candidatePartyPresident );
@@ -47,7 +48,6 @@ public class PartyPresidentCandidateController {
 		iCandidatePartyPresident.saveCandidatePartyPresident(candidate);
 		}
 		else{
-			//obsluga;
 		}
 		return REDIRECT_TO_POLITICAL_PARTY_CANDIDATES_PRESIDENT;
 	}
@@ -60,7 +60,6 @@ public class PartyPresidentCandidateController {
 		try {
 			iCandidatePartyPresident.updateCandidatePartyPresident(candidate);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		iCandidatePartyPresident.deleteCandidatePartyPresidentById(candidate.getID());

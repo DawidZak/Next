@@ -2,6 +2,8 @@ package com.next.dzejk.services;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +18,9 @@ public class UserService implements IUserService {
 	
 	@Autowired
 	IUserRepository userRepository;
+	
+	@Autowired
+	SessionFactory sessionFactory;
 	
 	@Override
 	public User saveInitUser(User user) {
@@ -50,11 +55,21 @@ public class UserService implements IUserService {
 		user.setIdR(1);
 		return userRepository.save(user);
 	}
+	
+	
 	@PostConstruct
 	void init(){
-		
-	saveInitUser(new User("Imie1", "Nazwisko1","12","12","wp.pl","Lodz",4,4));
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode("12");	
+	saveInitUser(new User("Imie1", "Nazwisko1",hashedPassword,"12","wp.pl","Lodz",4,4));
 
+	}
+
+	@Override
+	public User updateUser(String pesel) {
+		Session sess = sessionFactory.openSession();
+	
+		return null;
 	}
 
 }

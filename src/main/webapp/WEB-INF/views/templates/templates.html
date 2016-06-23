@@ -18,7 +18,21 @@ body {
 	background-color: inherit;
     border-color: white;
 	}
-
+	
+	.red-button, red-button:hover {
+	background-color: #DC143C !important;
+	border-color: #DC143C !important;
+	
+	
+}
+.alpha{
+display:flex !important;
+float:right;
+margin-top:110px;
+}
+.navbar-default .navbar-nav>li>a:hover {
+color: #DC143C !important;
+}
 </style>
 <link th:fragment="link" th:href="@{/resources/css/main.css}" rel="stylesheet" />
 <link th:fragment="link" th:href="@{/resources/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css}" rel="stylesheet" />
@@ -32,7 +46,8 @@ body {
 
 <img th:src="@{/resources/photos/Herb_Polski.svg}" style="height:10em; margin-top: 10px;" alt="..."></img>
       <p style="display: inline-block; margin-left: 20px; font-size: 4em;">wybory.gov.pl</p>
-      <!-- Static navbar -->
+      <div class="alpha"  style="display: flex; float:right; margin-top:110px;"><p >Twój PESEL:  </p>
+      <div sec:authentication="name"></div></div>
       <nav class="navbar navbar-default upperCase">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -46,20 +61,20 @@ body {
           <div id="navbar" class="navbar-collapse collapse">
             <ul  class="nav navbar-nav">
               <!-- Doczytac co oznacza # -->	
-              <li class="active"><a href="/dzejk"><i class="fa fa-home fa-lg"></i> Strona główna</a></li>
-              <li><a href="/dzejk/politicalParty">Lista partii politycznych</a></li>
+              <li class="active"><a href="/dzejk" class="red-button"><i class="fa fa-home fa-lg"></i> Strona główna</a></li>
+              <li ><a href="/dzejk/politicalParty" >Lista partii politycznych</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lista kandydatów na...<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/dzejk/listCandidatePresident">Prezydenta</a></li>
-                  <li><a href="/dzejk/politicalPartyCandidatesPresident">Przewodniczącego Partii</a></li>
+                  <li><a href="/dzejk/candidate/listPresident">Prezydenta</a></li>
+                  <li><a href="/dzejk/candidate/politicalPartyPresident">Przewodniczącego Partii</a></li>
                   <li><a href="#">Głosującego</a></li>
                 </ul>
               </li>
                  <li th:if="${#authorization.expression('hasRole(''Admin'')')}" class="dropdown">
                 <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dodaj kandydatów...<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/dzejk/listCandidatePresident">Prezydenta</a></li>
+                  <li><a href="/dzejk/listCandidatePresident" class="red">Prezydenta</a></li>
                   <li><a href="/dzejk/politicalPartyCandidatesPresident">Przewodniczącego Partii</a></li>
                   <li><a href="#">Głosującego</a></li>
                 </ul>
@@ -71,9 +86,16 @@ body {
               <li  th:switch="${#authorization.expression('isAuthenticated()')}" class="active">
               	<a th:case="false" href="/dzejk/login"><i class="fa fa-sign-in fa-lg"></i> Zaloguj <span class="sr-only">(current)</span></a>
               	<form th:case="true" method="post" th:action="@{/logout}">
-              	<button type="submit"  ><i class="fa fa-sign-in fa-lg fa-rotate-180"></i> Wyloguj <span class="sr-only">(current)</span></button></form>
+              	<button type="submit" class="btn btn-default"><i class="fa fa-sign-in fa-lg fa-rotate-180"></i> Wyloguj <span class="sr-only">(current)</span></button></form>
               	</li>
-              <li><a href="/dzejk/register"><i class="fa fa-user-plus fa-lg"></i> Zarejestruj</a></li>
+              <li th:switch="${#authorization.expression('isAuthenticated()')}" >
+              <a th:case="false" href="/dzejk/register"><i class="fa fa-user-plus fa-lg"></i> Zarejestruj</a>
+              <a th:case="true" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><i class="fa fa-cog" aria-hidden="true"></i>
+              Ustawienia</a>
+              <ul class="dropdown-menu">
+              <li><a data-toggle="modal" data-target=".bs-example-modal-lg">Dane podstawowe</a> </li>
+              <li><a href="/dzejk/setings">Opis</a> </li>
+              </ul></li>
               <li><a href="../navbar-fixed-top/"><i class="fa fa-info fa-lg"></i> O stronie</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -113,7 +135,14 @@ body {
       <img th:src="..." alt="..."/>
     </a>
   </div>
-
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+	
 </div>
   <div class="footerInfo">
   <ul>
@@ -124,5 +153,24 @@ body {
     <script th:fragment="script" th:src="@{/resources/jquery/jquery-1.11.3.min.js}"></script>
 	<script th:fragment="script" th:src="@{/resources/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js}"></script>
 	<script th:fragment="script" th:src="@{/resources/other/bootstrapValidator.min.js}"></script>
+	<script>
+	$('.navbar-right li > a').on('click', function() {
+	     //alert("Dsadsadsad");
+	 var val = $('.alpha div').text();
+	  $.ajax({
+	     type: "GET",
+	     url: "editUserInfo",
+	     data: { pesel: val}, // parameters
+	     success: function(){
+	    	 
+	    	 alert("dasdasdas")
+	     },
+	     error: function(){
+	    	alert("errror") 
+	    	 
+	     }
+	  })
+	});
+	</script>
 </body>
 </html>

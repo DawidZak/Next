@@ -21,7 +21,8 @@ body {
 	<div class="container">
 		<div th:replace="templates/templates::menu"></div>
 
-		<button th:if="${#authorization.expression('hasAuthority(''Admin'')')}"
+		<button
+			th:if="${#authorization.expression('hasAuthority(''Admin'')')}"
 			type="button" class="btn btn-primary pull-right red-button"
 			data-toggle="modal" data-target="#myModal">Dodaj Partie</button>
 		<table class="table table-hover table-striped table-bordered">
@@ -41,7 +42,7 @@ body {
 				<td th:text="${party.countMembers}">Zak</td>
 			</tbody>
 		</table>
-<!-- th:class="${#fields.hasErrors('degree')}? fieldError"  -->
+		<!-- th:class="${#fields.hasErrors('degree')}? fieldError"  -->
 
 		<div th:if="${#authorization.expression('hasAuthority(''Admin'')')}"
 			class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -53,12 +54,13 @@ body {
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Dodaj Partie Polityczną</h4>
+						<h4 class="modal-title" id="myModalLabel">Dodaj Partie
+							Polityczną</h4>
 					</div>
 					<div class="modal-body">
-							<form method="post" role="form" th:object="${partyForm}"
+						<form method="post" role="form" th:object="${partyForm}"
 							th:action="politicalPartySend">
-							
+
 							<div class="form-group">
 								<label for="partyName">Nazwa</label> <input
 									th:field="${partyForm.partyName}" type="text"
@@ -72,14 +74,13 @@ body {
 									placeholder="Podaj imie i nazwisko przewodniczącego" />
 								<div class="form-group">
 									<label for="wing">Orientacja(?)</label> <input
-										th:field="${partyForm.wing}" type="text"
-										class="form-control" name="wing" 
-										placeholder="Podaj orientacje(?)" />
+										th:field="${partyForm.wing}" type="text" class="form-control"
+										name="wing" placeholder="Podaj orientacje(?)" />
 								</div>
 								<div class="form-group">
 									<label for="wing">Ilość członków</label> <input
 										th:field="${partyForm.countMembers}" type="number"
-										class="form-control" name="wing" 
+										class="form-control" name="wing"
 										placeholder="Podaj ilość członków" />
 								</div>
 							</div>
