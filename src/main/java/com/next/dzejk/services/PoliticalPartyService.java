@@ -25,10 +25,11 @@ public class PoliticalPartyService implements IPoliticalPartyService {
 	
 	@Override
 	public PoliticalParty addPoliticalParty(AddParty partyForm) {
+		User user = new User();
 		PoliticalParty party = new PoliticalParty();
 		party.setKind(partyForm.getWing());
 		party.setPartyName(partyForm.getPartyName());
-		party.setPartyPresident(partyForm.getPartyPresident());
+		//party.setUserPartyPresident(user.s);(partyForm.getPartyPresident());
 		party.setCountMembers(partyForm.getCountMembers());
 		return 	politicalPartyRepository.save(party);
 		
@@ -49,7 +50,9 @@ public class PoliticalPartyService implements IPoliticalPartyService {
     
 	@PostConstruct
 	void init() {
-		politicalPartyRepository.save(new PoliticalParty(0,"Polska Silna", 43, "Right", "Andrew") );
+		User user = new User();
+		user.setFirstName("dadasdas");
+		politicalPartyRepository.save(new PoliticalParty(0,"Polska Silna", 43, "Right",user )) ;
 	
 	}
 

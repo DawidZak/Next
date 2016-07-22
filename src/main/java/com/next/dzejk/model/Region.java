@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 import lombok.Data;
 
 @Entity
-@Data
+
 
 public class Region {
 	@Id
@@ -27,8 +27,20 @@ public class Region {
 	private  String regionName;
 	//@OneToMany//(mappedBy="User")
 	//private Set<User> users;
-	Region(){};
+	public Region(){};
 	public Region(String regionName) {
 		this.regionName=regionName;
+	}
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public String getRegionName() {
+		return regionName;
+	}
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
 	}
 }

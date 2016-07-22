@@ -1,7 +1,9 @@
 package com.next.dzejk.services;
 
+import com.next.dzejk.model.User;
+
 public interface ISetingsService {
 
-	void changeUserSetings(String pesel);
+	User changeUserSetings(String pesel);
 
 }

@@ -13,10 +13,13 @@ public class SetingsService implements ISetingsService {
 	IUserRepository iUserRepository;
 	
 	@Override
-	public void changeUserSetings(String pesel){
+	public User changeUserSetings(String pesel){
 		System.out.println("PESEL przed" + pesel);
 		User user = iUserRepository.findByPesel(pesel);
 		System.out.println("Pobrany pesel" + user.getPESEL());
+		System.out.println(user.getCity());
+		
+		return user;
 		
 	}
 }

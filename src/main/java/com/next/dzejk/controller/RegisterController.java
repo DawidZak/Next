@@ -59,6 +59,7 @@ public class RegisterController { // extends CandidateManager
 				List<FieldError> lista;// =  new ArrayList<FieldError>();
 				lista = result.getFieldErrors();
 				for (FieldError error : lista) {
+					System.out.println(error);
 					errors.add(error.getField());
 					logger.info("Blad" + error.getField());
 				}

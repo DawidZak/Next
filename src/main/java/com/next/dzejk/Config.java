@@ -56,7 +56,7 @@ public class Config {
 	 * Haslo.
 	 */
 
-	private String password = "sa";
+	private String password = "";
 
 	/**
 	 * Dialekt.

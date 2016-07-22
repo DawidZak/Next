@@ -1,5 +1,6 @@
 package com.next.dzejk.model;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 
 //Rozszerzam klase CandidateModel o klase PersonModel
@@ -13,7 +14,8 @@ public abstract class Candidate  {
 	protected String lastName;
 	protected String Slogan;
 	protected String partyMember;
-	protected int IDU;
+	@OneToOne
+	protected User UserObject;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -31,12 +33,6 @@ public abstract class Candidate  {
 	}
 	public void setSlogan(String slogan) {
 		Slogan = slogan;
-	}
-	public int getIDU() {
-		return IDU;
-	}
-	public void setIDU(int iDU) {
-		IDU = iDU;
 	}
 	public String getPartyMember() {
 		return partyMember;

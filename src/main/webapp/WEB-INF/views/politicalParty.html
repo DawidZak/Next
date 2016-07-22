@@ -38,7 +38,7 @@ body {
 			<tbody th:each="party : ${politicParty}">
 				<td th:text="${party.partyName}">Dawid</td>
 				<td th:text="${party.kind}">Zak</td>
-				<td th:text="${party.partyPresident}">Zak</td>
+				<td th:text="${party.userPartyPresident.firstName} +' ' + ${party.userPartyPresident.lastName} ">Zak</td>
 				<td th:text="${party.countMembers}">Zak</td>
 			</tbody>
 		</table>
