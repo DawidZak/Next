@@ -40,6 +40,16 @@ body {
 .navbar-default .navbar-nav>li>a:hover {
 	color: #DC143C !important;
 }
+
+.width {
+	width:30% !important;
+}
+.hide {
+//display:none !important;
+}
+.inline {
+display:inline-flex;
+}
 </style>
 <link th:fragment="link" th:href="@{/resources/css/main.css}"
 	rel="stylesheet" />
@@ -172,7 +182,7 @@ body {
 			</div>
 			<div class="modal fade bs-example-modal-lg" tabindex="-1"
 				role="dialog" aria-labelledby="myLargeModalLabel">
-				<div class="modal-dialog modal-lg">
+				<div class="modal-dialog width">
 					<div class="modal-content">
 						<div>
 
@@ -192,34 +202,30 @@ body {
 							<!-- Tab panes -->
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane active" id="home">
-									...1
+
 									<div class="bs-example bs-example-type"
 										data-example-id="simple-headings">
 										<table class="table">
 											<tbody>
 												<tr>
-													<td><h1>h1. Bootstrap heading</h1></td>
-													<td class="type-info">Semibold 36px</td>
-												</tr>
-												<tr>
-													<td><h2>h2. Bootstrap heading</h2></td>
-													<td class="type-info">Semibold 30px</td>
-												</tr>
-												<tr>
-													<td><h3>h3. Bootstrap heading</h3></td>
+													<td><h5>Imię:</h5>
+														<p class="firstName"></p></td>
 													<td class="type-info">Semibold 24px</td>
 												</tr>
 												<tr>
-													<td><h4>h4. Bootstrap heading</h4></td>
-													<td class="type-info">Semibold 18px</td>
+													<td><h5>Nazwisko:</h5>
+														<p class="lastName">th</p></td>
+													<td class="type-info">Semibold 24px</td>
 												</tr>
 												<tr>
-													<td><h5>h5. Bootstrap heading</h5></td>
-													<td class="type-info">Semibold 14px</td>
+													<td><h5>PESEL:</h5>
+														<p class="PESEL"></p></td>
+													<td class="type-info">Semibold 24px</td>
 												</tr>
 												<tr>
-													<td><h6>h6. Bootstrap heading</h6></td>
-													<td class="type-info">Semibold 12px</td>
+													<td><h5>Miejsce zamieszkania:</h5>
+														<p class="city"></p></td>
+													<td class="type-info">Semibold 24px</td>
 												</tr>
 											</tbody>
 										</table>
@@ -227,42 +233,54 @@ body {
 
 
 								</div>
-								<div role="tabpanel" class="tab-pane" id="profile">...2</div>
-								<div role="tabpanel" class="tab-pane" id="messages">...3</div>
+								<div role="tabpanel" class="tab-pane" id="profile">
+																			<table class="table">
+											<tbody>
+												<tr>
+													<td><h5>E-mail:</h5>
+														<p class="email"></p> <a class="change">Zmień adres</a>
+																	<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Potwierdź zmianę hasłem:</label>
+    <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
+  </div>
+  </form>
+														</td>
+
+												</tr>
+<tr>
+<td><h5>Hasło:</h5>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nowe hasło:</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
+  </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Potwierdź zmianę hasłem:</label>
+    <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
+  </div>
+  </form>
+</td>
+</tr>
+											</tbody>
+										</table>								
+								
+								
+								</div>
+								<div role="tabpanel" class="tab-pane" id="messages">
+								 <div class="form-group">
+  <label for="comment">Comment:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
+</div>
+								</div>
 								<div role="tabpanel" class="tab-pane" id="settings">...4</div>
 							</div>
 
 						</div>
-						<p>test</p>
-						<form class="form-horizontal">
-							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-								<div class="col-sm-10">
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="Email" />
-									<p id="email"></p>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputPassword3" class="col-sm-2 control-label">Miejscowość:</label>
-								<div class="col-sm-10">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="Password" />
-									<p id="city"></p>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<div class="checkbox"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<button type="submit" class="btn btn-default">Sign in</button>
-								</div>
-							</div>
-						</form>
-
 					</div>
 				</div>
 			</div>
@@ -283,6 +301,10 @@ body {
 	<script th:fragment="script"
 		th:src="@{/resources/other/bootstrapValidator.min.js}"></script>
 	<script>
+	$( ".change" ).on( "click", function() {
+		 $(".form-group").toggle(display);
+		alert("1");
+	});
 		$('.navbar-right li > a').on('click', function() {
 			//alert("Dsadsadsad");
 			var val = $('.alpha div').text();
@@ -295,9 +317,12 @@ body {
 				success : function(data) {
 
 					console.dir(data);
-					console.log(data.firstName);
-					$('#email').text(data.email);
-					$('#city').text(data.city);
+					$('.firstName').text(data.firstName);
+					$('.lastName').text(data.lastName);
+					$('.PESEL').text(data.pesel);
+					$('.city').text(data.city);
+					$('.email').text(data.email);
+					
 				},
 				error : function() {
 					alert("errror")

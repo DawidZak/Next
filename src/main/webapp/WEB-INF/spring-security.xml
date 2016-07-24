@@ -15,9 +15,10 @@
 
 
 
-		<form-login login-page="/login" default-target-url="/"
+		<form-login login-page="/login" default-target-url="/authSuccesful"
 			authentication-failure-url="/login-er1ror" username-parameter="pesel"
 			password-parameter="password" />
+			
 		<logout logout-success-url="/login" />
 		<access-denied-handler error-page="/403/" />
 

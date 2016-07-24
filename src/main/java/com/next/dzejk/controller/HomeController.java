@@ -6,10 +6,13 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
+import org.h2.engine.SysProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,8 +47,9 @@ public class HomeController {
 	User user;
 	int i=0;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpSession session) {
 		//System.out.println("Widzisz?" +session.getId());
+		
 		user.setCity("scope?");
 		logger.info("No czeœæ","g");
 		System.out.println(user.getCity());
@@ -63,12 +67,21 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
+		System.out.println("PESEL Z INNEJ SESJI" +session.getAttribute("pesel"));
 		return "home";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(){
 		return "login";
+	}
+	@RequestMapping(value ="/authSuccesful", method = RequestMethod.GET)
+	public String authSuccesful(HttpSession session){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		System.out.println("kurwa" + authentication.getName()); 
+		session.setAttribute("pesel", authentication.getName());
+		return "redirect:/";
 	}
 	
 }
