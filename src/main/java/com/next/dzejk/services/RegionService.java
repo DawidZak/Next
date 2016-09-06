@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.next.dzejk.dao.IRegionRepository;
-import com.next.dzejk.dao.IUserRepository;
-import com.next.dzejk.form.RegisterUser;
 import com.next.dzejk.model.Region;
-import com.next.dzejk.model.User;
 
 @Service
 public class RegionService implements IRegionService{

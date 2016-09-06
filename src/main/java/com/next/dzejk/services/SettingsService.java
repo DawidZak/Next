@@ -7,19 +7,22 @@ import com.next.dzejk.dao.IUserRepository;
 import com.next.dzejk.model.User;
 
 @Service
-public class SetingsService implements ISetingsService {
+public class SettingsService implements ISettingsService {
 
 	@Autowired
 	IUserRepository iUserRepository;
 	
 	@Override
 	public User changeUserSetings(String pesel){
-		System.out.println("PESEL przed" + pesel);
 		User user = iUserRepository.findByPesel(pesel);
-		System.out.println("Pobrany pesel" + user.getPESEL());
-		System.out.println(user.getCity());
-		
 		return user;
+		
+	}
+	
+	@Override
+	public boolean saveUserSetings(User user){
+		return true;
+		
 		
 	}
 }

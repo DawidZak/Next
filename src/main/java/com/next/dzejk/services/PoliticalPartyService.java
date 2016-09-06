@@ -3,14 +3,7 @@ package com.next.dzejk.services;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-
-import org.h2.engine.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.next.dzejk.dao.IPolitcalPartyRepository;
@@ -25,7 +18,6 @@ public class PoliticalPartyService implements IPoliticalPartyService {
 	
 	@Override
 	public PoliticalParty addPoliticalParty(AddParty partyForm) {
-		User user = new User();
 		PoliticalParty party = new PoliticalParty();
 		party.setKind(partyForm.getWing());
 		party.setPartyName(partyForm.getPartyName());

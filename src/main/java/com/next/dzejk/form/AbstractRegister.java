@@ -4,7 +4,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import lombok.Data;
+
 
 public abstract class AbstractRegister {
 	protected int ID;
