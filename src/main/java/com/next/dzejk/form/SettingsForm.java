@@ -1,7 +1,6 @@
 package com.next.dzejk.form;
 
 public class SettingsForm {
-
 	private String email;
 	private String password;
 	private String city;

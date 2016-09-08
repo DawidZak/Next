@@ -44,7 +44,7 @@ public class SettingsController {
 		model.addAttribute("settingsForm", new SettingsForm());
 		return user;
 	}
-	@RequestMapping(value="/editUserInfo", method = RequestMethod.POST)
+	@RequestMapping(value="/editUserInfoEmail", method = RequestMethod.POST)
 	public @ResponseBody String saveChanges(@ModelAttribute("settingsForm") SettingsForm settingsForm,BindingResult bindingResult,HttpSession session, Model model){
 		System.out.println("post");
 		System.out.println("email" + settingsForm.getEmail());
@@ -55,6 +55,7 @@ public class SettingsController {
 		}
 		if(settingsForm.getEmail() != null){
 			user.setEmail(settingsForm.getEmail());
+			System.out.println("email z forma" + user.getEmail());
 		}
 		if(settingsForm.getPassword() != user.getPassword()){
 			
@@ -66,5 +67,16 @@ public class SettingsController {
 		
 		return "dasd";
 		
+	}
+	@RequestMapping(value="/editUserInfoCity",method = RequestMethod.POST)
+	@ResponseBody public String saveCity(@ModelAttribute("settingsForm") SettingsForm settingsForm,BindingResult bindingResult,HttpSession session, Model model){
+		User user = new User();
+		user = (User)session.getAttribute("user");
+		if(settingsForm.getCity() != null){
+			user.setCity(settingsForm.getCity());
+			settingsService.saveUserSetings(user);
+			return "true";
+		}
+		return "false";
 	}
 }

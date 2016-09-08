@@ -21,7 +21,9 @@ public class SettingsService implements ISettingsService {
 	
 	@Override
 	public boolean saveUserSetings(User user){
-		return true;
+		System.out.println("kjest?" + user.getCity());
+		iUserRepository.save(user);
+		return false;
 		
 		
 	}

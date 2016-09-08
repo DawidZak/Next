@@ -243,7 +243,7 @@ display:inline-flex;
 												<tr>
 													<td><h5>E-mail:</h5>
 														<p class="email"></p> <a class="change">Zmień adres</a>
-																	<form th:action="editUserInfo" method="POST" th:object="${settingsForm}" id="newEmail">
+																	<form th:action="editUserInfoEmail" method="POST" th:object="${settingsForm}" id="newEmail">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input th:field="${settingsForm.email}" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
@@ -274,7 +274,7 @@ display:inline-flex;
 </tr>
 <tr>
 <td>
-<form th:action="editUserInfo" method="POST" th:object="${settingsForm}" >
+<form id="sendNewCityForm" method="POST" th:object="${settingsForm}" >
   <div class="form-group">
     <label for="exampleInputEmail1">Stare miejsce zamieszkania:</label>
     <p class="city"></p>
@@ -283,7 +283,7 @@ display:inline-flex;
     <label for="exampleInputEmail1">Nowe miejsce zamieszkania:</label>
     <input th:field="${settingsForm.city}"   type="text" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
   </div>
-  <button></button>
+  <button type="button" id="sendNewCity">Zmien</button>
   </form>
 </td>
 </tr>
@@ -381,7 +381,36 @@ display:inline-flex;
 			var val = $('#newEmail').serialize();
 			$.ajax({
 				type : "POST",
-				url : "editUserInfo",
+				url : "editUserInfoEmail",
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token);
+					
+				},
+				data : val, // parameters
+				success : function(data) {
+
+					console.dir(data);
+
+					
+				},
+				error : function() {
+					alert("errror")
+
+				}
+			})
+		});
+		//city
+		$('#sendNewCity').on('click', function() {
+					console.log(this)
+			//alert("Dsadsadsad");
+			var token = $("#token").attr("value");
+			var header = $("#header").attr("value");
+			console.log(token);
+			console.log(header);
+			var val = $('#sendNewCityForm').serialize();
+			$.ajax({
+				type : "POST",
+				url : "editUserInfoCity",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
 					
