@@ -2,8 +2,10 @@ package com.next.dzejk.form;
 
 public class SettingsForm {
 	private String email;
-	private String password;
+	private String newPassword;
+	private String oldPassword;
 	private String city;
+	private String description;
 	
 	public String getEmail() {
 		return email;
@@ -11,16 +13,28 @@ public class SettingsForm {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
+	public String getNewPassword() {
+		return newPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setNewPassword(String password) {
+		this.newPassword = password;
 	}
 	public String getCity() {
 		return city;
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getOldPassword() {
+		return oldPassword;
+	}
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 }

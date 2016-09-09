@@ -339,35 +339,32 @@ display:inline-flex;
 	<script th:fragment="script"
 		th:src="@{/resources/other/bootstrapValidator.min.js}"></script>
 	<script>
-	$( ".change" ).on( "click", function() {
-		 $(".form-group").toggle(display);
-		alert("1");
-	});
+	function getInfo(){
+		var val = $('.alpha div').text();
+		$.ajax({
+			type : "GET",
+			url : "editUserInfo",
+			data : {
+				pesel : val
+			}, // parameters
+			success : function(data) {
+
+				console.dir(data);
+				$('.firstName').text(data.firstName);
+				$('.lastName').text(data.lastName);
+				$('.PESEL').text(data.pesel);
+				$('.city').text(data.city);
+				$('.email').text(data.email);
+				
+			},
+			error : function(data) {
+				alert("errror")
+				console.dir(data)
+
+			}})
+	}
 		$('.navbar-right li > a').on('click', function() {
-			//alert("Dsadsadsad");
-			var val = $('.alpha div').text();
-			$.ajax({
-				type : "GET",
-				url : "editUserInfo",
-				data : {
-					pesel : val
-				}, // parameters
-				success : function(data) {
-
-					console.dir(data);
-					$('.firstName').text(data.firstName);
-					$('.lastName').text(data.lastName);
-					$('.PESEL').text(data.pesel);
-					$('.city').text(data.city);
-					$('.email').text(data.email);
-					
-				},
-				error : function(data) {
-					alert("errror")
-					console.dir(data)
-
-				}
-			})
+			getInfo();
 		});
 		
 		//sa
@@ -388,7 +385,7 @@ display:inline-flex;
 				},
 				data : val, // parameters
 				success : function(data) {
-
+					getInfo();
 					console.dir(data);
 
 					
@@ -417,7 +414,7 @@ display:inline-flex;
 				},
 				data : val, // parameters
 				success : function(data) {
-
+					getInfo();
 					console.dir(data);
 
 					

@@ -57,13 +57,7 @@ public class SettingsController {
 			user.setEmail(settingsForm.getEmail());
 			System.out.println("email z forma" + user.getEmail());
 		}
-		if(settingsForm.getPassword() != user.getPassword()){
-			
-		}else{
-			settingsService.saveUserSetings(user);
-		}
-		
-		user.setPassword(settingsForm.getPassword());
+
 		
 		return "dasd";
 		
@@ -74,6 +68,28 @@ public class SettingsController {
 		user = (User)session.getAttribute("user");
 		if(settingsForm.getCity() != null){
 			user.setCity(settingsForm.getCity());
+			settingsService.saveUserSetings(user);
+			return "true";
+		}
+		return "false";
+	}
+	@RequestMapping(value = "/editUserInfoDescription",method = RequestMethod.POST)
+	@ResponseBody public String saveDescription(@ModelAttribute("settingsForm") SettingsForm settingsForm,BindingResult bindingResult,HttpSession session, Model model){
+		User user = new User();
+		user = (User)session.getAttribute("user");
+		if(settingsForm.getDescription() != null){
+			user.setCity(settingsForm.getDescription());
+			settingsService.saveUserSetings(user);
+			return "true";
+		}
+		return "false";
+	}
+	@RequestMapping(value = "/editUserInfoPassword",method = RequestMethod.POST)
+	@ResponseBody public String saveNewPassword (@ModelAttribute("settingsForm") SettingsForm settingsForm ,HttpSession session,BindingResult bindingResult,Model model){
+		User user = new User();
+		user = (User)session.getAttribute("user");
+		if(settingsForm.getOldPassword() == user.getPassword()){
+			user.setPassword(settingsForm.getNewPassword());
 			settingsService.saveUserSetings(user);
 			return "true";
 		}
