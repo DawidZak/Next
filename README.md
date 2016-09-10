@@ -29,9 +29,10 @@ This README would normally document whatever steps are necessary to get your app
 * Other community or team contact
 
 ### Used ###
-* Lombok
+* Spring 4
 * Thymleaf
 * Hibernate
 * H2
-
+* SpringSecurity
+* Spring Data
 ![Alt text](Next.jpg)

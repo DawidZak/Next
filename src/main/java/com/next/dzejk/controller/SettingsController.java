@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +25,9 @@ public class SettingsController {
 	@Autowired
 	SettingsService settingsService;
 	
+	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	User user = new User();
+	boolean isValid = false; 
 	@RequestMapping(value="/editUserInfo", method = RequestMethod.GET)
 	@ResponseBody public User editUser(Model model, HttpSession session){
 		/*
@@ -46,27 +51,22 @@ public class SettingsController {
 	}
 	@RequestMapping(value="/editUserInfoEmail", method = RequestMethod.POST)
 	public @ResponseBody String saveChanges(@ModelAttribute("settingsForm") SettingsForm settingsForm,BindingResult bindingResult,HttpSession session, Model model){
-		System.out.println("post");
-		System.out.println("email" + settingsForm.getEmail());
-		User user = new User();
 		user = (User) session.getAttribute("user");
-		if(settingsForm.getCity() != null) {
-			user.setCity(settingsForm.getCity());
-		}
-		if(settingsForm.getEmail() != null){
-			user.setEmail(settingsForm.getEmail());
-			System.out.println("email z forma" + user.getEmail());
-		}
-
-		
+		isValid = passwordEncoder.matches(settingsForm.getOldPassword(), user.getPassword()); 
+		System.out.println("isValid" + isValid);
+		if(passwordEncoder.matches(settingsForm.getOldPassword(), user.getPassword())){
+			if(!settingsForm.getEmail().isEmpty()){
+				user.setEmail(settingsForm.getEmail());
+				settingsService.saveUserSetings(user);
+			}
+		}	
 		return "dasd";
 		
 	}
 	@RequestMapping(value="/editUserInfoCity",method = RequestMethod.POST)
 	@ResponseBody public String saveCity(@ModelAttribute("settingsForm") SettingsForm settingsForm,BindingResult bindingResult,HttpSession session, Model model){
-		User user = new User();
 		user = (User)session.getAttribute("user");
-		if(settingsForm.getCity() != null){
+		if(!settingsForm.getCity().isEmpty()){
 			user.setCity(settingsForm.getCity());
 			settingsService.saveUserSetings(user);
 			return "true";
@@ -88,10 +88,13 @@ public class SettingsController {
 	@ResponseBody public String saveNewPassword (@ModelAttribute("settingsForm") SettingsForm settingsForm ,HttpSession session,BindingResult bindingResult,Model model){
 		User user = new User();
 		user = (User)session.getAttribute("user");
-		if(settingsForm.getOldPassword() == user.getPassword()){
-			user.setPassword(settingsForm.getNewPassword());
-			settingsService.saveUserSetings(user);
-			return "true";
+		if(passwordEncoder.matches(settingsForm.getOldPassword(), user.getPassword())){
+			if(!settingsForm.getNewPassword().isEmpty()){
+				user.setPassword(passwordEncoder.encode(settingsForm.getNewPassword()));
+				System.out.println("w ifie" + settingsForm.getNewPassword());
+				settingsService.saveUserSetings(user);
+				return "true";
+			}
 		}
 		return "false";
 	}
