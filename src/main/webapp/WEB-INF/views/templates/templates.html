@@ -290,17 +290,16 @@ display:inline-flex;
 <tr>
 <td>
 
-<form>
+<form th:object="${settingsForm}" method="post" id="newDescriptionForm">
   <div class="form-group">
     <label for="exampleInputEmail1">Opis</label>
-    <p class="city"></p>
+    <p class="description"></p>
   </div>
-    <div class="form-group">
-    <label for="exampleInputEmail1">Opis:</label>
-    <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
-  </div>
-  <button></button>
-  </form>
+ <div class="form-group">
+  <label for="comment">Opis:</label>
+  <textarea class="form-control" rows="5" th:field="*{description}"></textarea>
+</div>
+  <button type="button" id="sendNewDescription">Zmien</button>  </form>
 </td>
 </tr>
 											</tbody>
@@ -355,6 +354,7 @@ display:inline-flex;
 				$('.PESEL').text(data.pesel);
 				$('.city').text(data.city);
 				$('.email').text(data.email);
+				$('.description').text(data.description);
 				
 			},
 			error : function(data) {
@@ -438,6 +438,35 @@ display:inline-flex;
 			$.ajax({
 				type : "POST",
 				url : "editUserInfoPassword",
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token);
+					
+				},
+				data : val, // parameters
+				success : function(data) {
+					getInfo();
+					console.dir(data);
+
+					
+				},
+				error : function() {
+					alert("errror")
+
+				}
+			})
+		});
+		//description
+				$('#sendNewDescription').on('click', function() {
+					console.log(this)
+			//alert("Dsadsadsad");
+			var token = $("#token").attr("value");
+			var header = $("#header").attr("value");
+			console.log(token);
+			console.log(header);
+			var val = $('#newDescriptionForm').serialize();
+			$.ajax({
+				type : "POST",
+				url : "editUserInfoDecription",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
 					

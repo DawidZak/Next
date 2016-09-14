@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.next.dzejk.form.SettingsForm;
 import com.next.dzejk.model.User;
+import com.next.dzejk.services.ISettingsService;
 import com.next.dzejk.services.SettingsService;
 
 @Controller
 public class SettingsController {
 
 	@Autowired
+	//ISettingsService settingsService;
 	SettingsService settingsService;
 	
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -97,5 +99,14 @@ public class SettingsController {
 			}
 		}
 		return "false";
+	}
+	@RequestMapping(value="/editUserInfoDecription")
+	@ResponseBody public String saveNewDescription(@ModelAttribute("settingsForm") SettingsForm settingsForm ,HttpSession session,BindingResult bindingResult,Model model){
+		if(!settingsForm.getDescription().isEmpty()){
+			user = (User)session.getAttribute("user");
+			user.setDescription(settingsForm.getDescription());
+			settingsService.saveUserSetings(user);
+		}
+		return "true";
 	}
 }
