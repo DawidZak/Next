@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.next.dzejk.form.RegisterCandidateParty;
+import com.next.dzejk.form.SettingsForm;
 import com.next.dzejk.model.CandidatePartyPresident;
 import com.next.dzejk.model.PoliticalParty;
 import com.next.dzejk.services.ICandidatePartyPresidentService;
@@ -39,6 +40,8 @@ public class PartyPresidentCandidateController {
 		model.addAttribute("politicalPartyCandidateParty", new RegisterCandidateParty());
 		model.addAttribute("politicalPartyCandidatePartyDelete", new RegisterCandidateParty());
 		model.addAttribute("politicalPartys", politicalParty);
+		model.addAttribute("settingsForm", new SettingsForm());
+
 		return POLITICAL_PARTY_CANDIDATES_PRESIDENT;
 	}
 	

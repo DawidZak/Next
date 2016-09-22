@@ -19,7 +19,15 @@
 								PESEL.</li>
 							<li>W polu Hasło wpisz ustanowione przez siebie hasło.</li>
 						</ol>
-
+						<div th:unless="${param.error == null}">
+							<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <p  th:text="${param.error[0]}" th:unless="${param.error == null}">Test</p>
+</div>
+						</div>
+ 
+							
 						<form method="post" role="form" th:action="@{/login}">
 							<div class="form-group">
 								<label for="exampleInputEmail1">PESEL</label> <input type="text"

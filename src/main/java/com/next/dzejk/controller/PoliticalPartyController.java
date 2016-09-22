@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.next.dzejk.form.AddParty;
+import com.next.dzejk.form.SettingsForm;
 import com.next.dzejk.model.PoliticalParty;
 import com.next.dzejk.services.IPoliticalPartyService;
 
@@ -27,6 +28,7 @@ public class PoliticalPartyController {
 		List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
 		model.addAttribute("politicParty", politicParty);
 		model.addAttribute("partyForm", new AddParty());
+		model.addAttribute("settingsForm", new SettingsForm());
 		return POLITICAL_PARTY_LIST;
 
 		
