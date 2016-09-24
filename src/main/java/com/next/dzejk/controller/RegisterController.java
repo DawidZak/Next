@@ -42,8 +42,6 @@ public class RegisterController { // extends CandidateManager
 		model.addAttribute("registerUser",new RegisterUser()); //ta wartosc jest do view i nizej
 		model.addAttribute("regions", regions);
 		model.addAttribute("settingsForm", new SettingsForm());
-		logger.info("Dzia³am1");
-
 		return "register";
 	}
 	@Autowired
