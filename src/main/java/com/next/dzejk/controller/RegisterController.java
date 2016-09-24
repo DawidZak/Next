@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.next.dzejk.dao.IRegionRepository;
 import com.next.dzejk.form.RegisterUser;
+import com.next.dzejk.form.SettingsForm;
 import com.next.dzejk.model.Region;
 import com.next.dzejk.services.IUserService;
 
@@ -40,7 +41,7 @@ public class RegisterController { // extends CandidateManager
 
 		model.addAttribute("registerUser",new RegisterUser()); //ta wartosc jest do view i nizej
 		model.addAttribute("regions", regions);
-		
+		model.addAttribute("settingsForm", new SettingsForm());
 		logger.info("Dzia³am1");
 
 		return "register";
