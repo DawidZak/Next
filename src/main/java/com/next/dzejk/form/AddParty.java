@@ -9,7 +9,9 @@ public class AddParty {
 	@NotEmpty
 	private String partyName;
 	//@NotEmpty
-	private String partyPresident;
+	private String partyPresidentFirstName;
+	
+	private String partyPresidentLastName;
 //	@NotEmpty
 	private String wing;
 	@NotNull @Digits(integer=10,fraction=0)
@@ -22,10 +24,10 @@ public class AddParty {
 		this.partyName = partyName;
 	}
 	public String getPartyPresident() {
-		return partyPresident;
+		return partyPresidentFirstName;
 	}
 	public void setPartyPresident(String partyPresident) {
-		this.partyPresident = partyPresident;
+		this.partyPresidentFirstName = partyPresident;
 	}
 	public String getWing() {
 		return wing;
@@ -39,5 +41,19 @@ public class AddParty {
 	public void setCountMembers(int countMembers) {
 		this.countMembers = countMembers;
 	}
+	
+	public String getPartyPresidentFirstName() {
+		return partyPresidentFirstName;
+	}
+	public void setPartyPresidentFirstName(String partyPresidentFirstName) {
+		this.partyPresidentFirstName = partyPresidentFirstName;
+	}
+	public String getPartyPresidentLastName() {
+		return partyPresidentLastName;
+	}
+	public void setPartyPresidentLastName(String partyPresidentLastName) {
+		this.partyPresidentLastName = partyPresidentLastName;
+	}
+	
 	public AddParty(){};
 }

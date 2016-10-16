@@ -30,7 +30,7 @@ public class PartyPresidentCandidateController {
 	IPoliticalPartyService iPoliticalPartyService;
 	
 	public static final String POLITICAL_PARTY_CANDIDATES_PRESIDENT = "politicalPartyCandidatesPresidents";	
-	public static final String REDIRECT_TO_POLITICAL_PARTY_CANDIDATES_PRESIDENT ="redirect:/politicalPartyCandidatesPresident" ;
+	public static final String REDIRECT_TO_POLITICAL_PARTY_CANDIDATES_PRESIDENT ="redirect:/candidate/politicalPartyPresident" ;
 	
 	@RequestMapping(value="/politicalPartyPresident", method=RequestMethod.GET)
 	String partyCandidates(Model model){
@@ -47,6 +47,7 @@ public class PartyPresidentCandidateController {
 	
 	@RequestMapping(value="/politicalPartyCandidatesPresidentSend", method=RequestMethod.POST)
 	String savePartyCandidates(@Valid @ModelAttribute("politicalPartyCandidateParty")RegisterCandidateParty candidate,BindingResult result, Model model){
+		System.out.println("Jestem tu");
 		if(!result.hasErrors()){
 		iCandidatePartyPresident.saveCandidatePartyPresident(candidate);
 		}
