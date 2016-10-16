@@ -30,7 +30,7 @@ public class SettingsController {
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	User user = new User();
 	boolean isValid = false; 
-	@RequestMapping(value="/editUserInfo", method = RequestMethod.GET)
+	@RequestMapping(value={"/editUserInfo","/candidate/editUserInfo"}, method = RequestMethod.GET)
 	@ResponseBody public User editUser(Model model, HttpSession session){
 		/*
 		 * Rozwi¹zanie, ¿e pobieram pesel ze strony jest zle
