@@ -40,7 +40,14 @@ public abstract class Candidate  {
 	public void setPartyMember(String partyMember) {
 		this.partyMember = partyMember;
 	} 
+
+	public User getUserObject() {
+		return UserObject;
 	}
+	public void setUserObject(User userObject) {
+		UserObject = userObject;
+	}
+}
 
 	
 	

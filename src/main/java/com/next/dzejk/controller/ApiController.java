@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.next.dzejk.model.CandidatePresident;
 import com.next.dzejk.services.ICandidatePresidentService;
 
+/**
+ * @author Dawid
+ * Rest contoller which contains mapping to /api/ 
+ */
+
 @RestController
 @RequestMapping("/api/")
 public class ApiController {
