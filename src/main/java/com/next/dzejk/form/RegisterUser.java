@@ -1,6 +1,7 @@
 package com.next.dzejk.form;
 
 import javax.validation.constraints.Digits;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 

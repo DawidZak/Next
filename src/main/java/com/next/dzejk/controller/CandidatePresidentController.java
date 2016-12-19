@@ -33,6 +33,8 @@ public class CandidatePresidentController {
 
 	private static final String NAZWA_RETURNA = "";
 
+	public static final String POLITICAL_PARTY_LIST = "politicalParty";
+	
 	@Autowired
 	ICandidatePresidentService iCandidatePresidentService;
 
@@ -42,7 +44,7 @@ public class CandidatePresidentController {
 	@Autowired
 	IPoliticalPartyService iPoliticalPartyService;
 
-	public static final String POLITICAL_PARTY_LIST = "politicalParty";
+	
 
 	@RequestMapping(value = "/listPresident", method = RequestMethod.GET)
 	// Nazwa metody PO RM nie ma wp³ywu na mapowanie

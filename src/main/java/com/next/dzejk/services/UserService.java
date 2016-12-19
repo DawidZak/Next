@@ -13,36 +13,38 @@ import com.next.dzejk.dao.IUserRepository;
 import com.next.dzejk.form.RegisterUser;
 import com.next.dzejk.model.Region;
 import com.next.dzejk.model.User;
+
 @Service
 public class UserService implements IUserService {
-	
+
 	@Autowired
 	IUserRepository userRepository;
-	
+
 	@Autowired
 	SessionFactory sessionFactory;
-	
+
 	@Override
 	public User saveInitUser(User user) {
 		// TODO Auto-generated method stub
 		return userRepository.save(user);
 	}
-	
+
 	@Override
 	public User saveUser(RegisterUser registerUser) {
 		int i = 0;
-		//String hashedPassword=null;
-			String login = registerUser.getPESEL();
-			String password = registerUser.getPassword();
-			System.out.println(password);
-//			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//			hashedPassword = passwordEncoder.encode(password);
-//			String hashedLogin = passwordEncoder.encode(login);
-//			System.out.println(hashedPassword);
-			i++;
-			
-			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			String hashedPassword = passwordEncoder.encode(registerUser.getPassword());
+		// String hashedPassword=null;
+		String login = registerUser.getPESEL();
+		String password = registerUser.getPassword();
+		System.out.println(password);
+		// BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// hashedPassword = passwordEncoder.encode(password);
+		// String hashedLogin = passwordEncoder.encode(login);
+		// System.out.println(hashedPassword);
+		i++;
+
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(registerUser.getPassword());
+		String hashedPESEL = passwordEncoder.encode(registerUser.getPESEL());
 		Region region = new Region();
 		region.setId(registerUser.getIdD());
 		User user = new User();
@@ -56,20 +58,19 @@ public class UserService implements IUserService {
 		user.setIdR(1);
 		return userRepository.save(user);
 	}
-	
-	
+
 	@PostConstruct
-	void init(){
+	void init() {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String hashedPassword = passwordEncoder.encode("12");	
-	saveInitUser(new User("Imie1", "Nazwisko1",hashedPassword,"12","wp.pl","Lodz",4));
+		String hashedPassword = passwordEncoder.encode("12");
+		saveInitUser(new User("Imie1", "Nazwisko1", hashedPassword, "12", "wp.pl", "Lodz", 4));
 
 	}
 
 	@Override
 	public User updateUser(String pesel) {
 		Session sess = sessionFactory.openSession();
-	
+
 		return null;
 	}
 

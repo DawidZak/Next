@@ -51,12 +51,11 @@ body {
 						<p class="PESELError" style="display: none;">Podaj swoj PESEL</p>
 					</div>
 					<div class="form-group">
-						<label for="email">Email address</label> <input type="email"
+						<label for="email">Email address</label> <input type="text"
 							class="form-control emailErrorInput"
 							th:field="${registerUser.email}" id="email"
 							placeholder="Podaj swój email" />
-						<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
-							Error</td>
+						
 						<p class="emailError" style="display: none;">Podaj swoj email</p>
 					</div>
 					<div class="form-group">

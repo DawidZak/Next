@@ -28,7 +28,6 @@
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder hash="bcrypt" />
-
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="SELECT pesel, password, 1 as enabled FROM USER WHERE pesel = ?"
 				authorities-by-username-query="SELECT u.pesel,r.name, u.idr FROM ROLE r, USER u WHERE u.IDR = r.ID AND u.PESEL = ?" />
