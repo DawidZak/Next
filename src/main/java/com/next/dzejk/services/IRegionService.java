@@ -7,6 +7,6 @@ import com.next.dzejk.model.Region;
 public interface IRegionService {
 
 	 Region saveRegion(Region district);
-	 Region findByid(int id );
+	 Region findById(int id );
 	 List<Region> findAll();
 }

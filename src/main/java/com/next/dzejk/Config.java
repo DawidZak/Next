@@ -31,7 +31,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.next", entityManagerFactoryRef = "entityManagerFactory")
-@ComponentScan("com.next.dzejk.model")
+@ComponentScan("com.next.dzejk.services, com.next.dzejk.model")
 public class Config {
 	/**
 	 * Sterownik bazy danych.

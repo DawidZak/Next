@@ -42,13 +42,15 @@ body {
 }
 
 .width {
-	width:30% !important;
+	width: 30% !important;
 }
-.hide {
-//display:none !important;
+
+.hide { //
+	display: none !important;
 }
+
 .inline {
-display:inline-flex;
+	display: inline-flex;
 }
 </style>
 <link th:fragment="link" th:href="@{/resources/css/main.css}"
@@ -71,7 +73,7 @@ display:inline-flex;
 		<img th:src="@{/resources/photos/Herb_Polski.svg}"
 			style="height: 10em; margin-top: 10px;" alt="..."></img>
 		<p style="display: inline-block; margin-left: 20px; font-size: 4em;">wybory.gov.pl</p>
-		<div class="alpha"
+		<div sec:authorize="isAuthenticated()" class="alpha"
 			style="display: flex; float: right; margin-top: 110px;">
 			<p>Twój PESEL:</p>
 			<div sec:authentication="name"></div>
@@ -147,10 +149,10 @@ display:inline-flex;
 			</div>
 			<!--/.container-fluid -->
 		</nav>
-								<input type="hidden" th:name="${_csrf.parameterName}"
-						id="header" th:value="${_csrf.headerName}" /> <input
-						type="hidden" th:name="${_csrf.parameterName}" id="token"
-						th:value="${_csrf.token}" />
+		<input type="hidden" th:name="${_csrf.parameterName}" id="header"
+			th:value="${_csrf.headerName}" /> <input type="hidden"
+			th:name="${_csrf.parameterName}" id="token" th:value="${_csrf.token}" />
+		<!-- 
 		<span
 			th:text="${#authorization.expression('isAuthenticated()')} ? 
                'the user is logged in' : 
@@ -161,7 +163,7 @@ display:inline-flex;
 
 		<div th:if="${#authorization.expression('hasAuthority(''Admin'')')}">
 			This will only be displayed if authenticated user has role
-			ROLE_ADMIN.</div>
+			ROLE_ADMIN.</div>  -->
 	</div>
 	<div th:fragment="footer">
 		<div class="row">
@@ -238,80 +240,97 @@ display:inline-flex;
 
 								</div>
 								<div role="tabpanel" class="tab-pane" id="profile">
-																			<table class="table">
-											<tbody>
-												<tr>
-													<td><h5>E-mail:</h5>
-														<p class="email"></p> <a class="change">Zmień adres</a>
-																	<form th:action="editUserInfoEmail" method="POST" th:object="${settingsForm}" id="newEmail">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input th:field="${settingsForm.email}" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
-  </div>
-    <div class="form-group">
-    <label for="exampleInputEmail1">Potwierdź zmianę hasłem:</label>
-    <input th:field="${settingsForm.oldPassword}"  type="password" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
-  </div>
-  <button class="btn btn-default" type="button" id = "sendNewEmail">Zmień</button>	
-  </form>
-														</td>
+									<table class="table">
+										<tbody>
+											<tr>
+												<td><h5>E-mail:</h5>
+													<p class="email"></p> <a class="change">Zmień adres</a>
+													<form th:action="editUserInfoEmail" method="POST"
+														th:object="${settingsForm}" id="newEmail">
+														<div class="form-group">
+															<label for="exampleInputEmail1">Email address</label> <input
+																th:field="${settingsForm.email}" type="email"
+																class="form-control" id="exampleInputEmail1"
+																placeholder="Email" />
+														</div>
+														<div class="form-group">
+															<label for="exampleInputEmail1">Potwierdź zmianę
+																hasłem:</label> <input th:field="${settingsForm.oldPassword}"
+																type="password" class="form-control"
+																id="exampleInputEmail1" placeholder="Email" />
+														</div>
+														<button class="btn btn-default" type="button"
+															id="sendNewEmail">Zmień</button>
+													</form></td>
 
-																		</tr>
-<tr>
-<td><h5>Hasło:</h5>
-<form id="newPasswordForm" method="POST" th:object="${settingsForm}">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Nowe hasło:</label>
-    <input th:field="${settingsForm.newPassword}"  type="password" class="form-control" id="exampleInputEmail1" placeholder="Nowe hasło"/>
-  </div>
-    <div class="form-group">
-    <label for="exampleInputEmail1">Potwierdź zmianę hasłem:</label>
-    <input th:field="${settingsForm.oldPassword}"  type="password" class="form-control" id="exampleInputEmail1" placeholder="Aktualne hasło"/>
-  </div>
-  <button class="btn btn-default"  type="button" id="newPasswordSend"></button>
-  </form>
-</td>
-</tr>
-<tr>
-<td>
-<form id="sendNewCityForm" method="POST" th:object="${settingsForm}" >
-  <div class="form-group">
-    <label for="exampleInputEmail1">Stare miejsce zamieszkania:</label>
-    <p class="city"></p>
-  </div>
-    <div class="form-group">
-    <label for="exampleInputEmail1">Nowe miejsce zamieszkania:</label>
-    <input th:field="${settingsForm.city}"   type="text" class="form-control" id="exampleInputEmail1" placeholder="Email"/>
-  </div>
-  <button type="button" id="sendNewCity">Zmien</button>
-  </form>
-</td>
-</tr>
-<tr>
-<td>
+											</tr>
+											<tr>
+												<td><h5>Hasło:</h5>
+													<form id="newPasswordForm" method="POST"
+														th:object="${settingsForm}">
+														<div class="form-group">
+															<label for="exampleInputEmail1">Nowe hasło:</label> <input
+																th:field="${settingsForm.newPassword}" type="password"
+																class="form-control" id="exampleInputEmail1"
+																placeholder="Nowe hasło" />
+														</div>
+														<div class="form-group">
+															<label for="exampleInputEmail1">Potwierdź zmianę
+																hasłem:</label> <input th:field="${settingsForm.oldPassword}"
+																type="password" class="form-control"
+																id="exampleInputEmail1" placeholder="Aktualne hasło" />
+														</div>
+														<button class="btn btn-default" type="button"
+															id="newPasswordSend"></button>
+													</form></td>
+											</tr>
+											<tr>
+												<td>
+													<form id="sendNewCityForm" method="POST"
+														th:object="${settingsForm}">
+														<div class="form-group">
+															<label for="exampleInputEmail1">Stare miejsce
+																zamieszkania:</label>
+															<p class="city"></p>
+														</div>
+														<div class="form-group">
+															<label for="exampleInputEmail1">Nowe miejsce
+																zamieszkania:</label> <input th:field="${settingsForm.city}"
+																type="text" class="form-control" id="exampleInputEmail1"
+																placeholder="Email" />
+														</div>
+														<button type="button" id="sendNewCity">Zmien</button>
+													</form>
+												</td>
+											</tr>
+											<tr>
+												<td>
 
-<form th:object="${settingsForm}" method="post" id="newDescriptionForm">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Opis</label>
-    <p class="description"></p>
-  </div>
- <div class="form-group">
-  <label for="comment">Opis:</label>
-  <textarea class="form-control" rows="5" th:field="*{description}"></textarea>
-</div>
-  <button type="button" id="sendNewDescription">Zmien</button>  </form>
-</td>
-</tr>
-											</tbody>
-										</table>								
-								
-								
+													<form th:object="${settingsForm}" method="post"
+														id="newDescriptionForm">
+														<div class="form-group">
+															<label for="exampleInputEmail1">Opis</label>
+															<p class="description"></p>
+														</div>
+														<div class="form-group">
+															<label for="comment">Opis:</label>
+															<textarea class="form-control" rows="5"
+																th:field="*{description}"></textarea>
+														</div>
+														<button type="button" id="sendNewDescription">Zmien</button>
+													</form>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+
+
 								</div>
 								<div role="tabpanel" class="tab-pane" id="messages">
-								 <div class="form-group">
-  <label for="comment">Comment:</label>
-  <textarea class="form-control" rows="5" id="comment"></textarea>
-</div>
+									<div class="form-group">
+										<label for="comment">Comment:</label>
+										<textarea class="form-control" rows="5" id="comment"></textarea>
+									</div>
 								</div>
 								<div role="tabpanel" class="tab-pane" id="settings">...4</div>
 							</div>
@@ -329,7 +348,7 @@ display:inline-flex;
 					Developers</a></li>
 		</ul>
 	</div>
-	
+
 
 	<script th:fragment="script"
 		th:src="@{/resources/jquery/jquery-1.11.3.min.js}"></script>
@@ -338,38 +357,39 @@ display:inline-flex;
 	<script th:fragment="script"
 		th:src="@{/resources/other/bootstrapValidator.min.js}"></script>
 	<script>
-	function getInfo(){
-		var val = $('.alpha div').text();
-		$.ajax({
-			type : "GET",
-			url : "editUserInfo",
-			data : {
-				pesel : val
-			}, // parameters
-			success : function(data) {
+		function getInfo() {
+			var val = $('.alpha div').text();
+			$.ajax({
+				type : "GET",
+				url : "editUserInfo",
+				data : {
+					pesel : val
+				}, // parameters
+				success : function(data) {
 
-				console.dir(data);
-				$('.firstName').text(data.firstName);
-				$('.lastName').text(data.lastName);
-				$('.PESEL').text(data.pesel);
-				$('.city').text(data.city);
-				$('.email').text(data.email);
-				$('.description').text(data.description);
-				
-			},
-			error : function(data) {
-				alert("errror")
-				console.dir(data)
+					console.dir(data);
+					$('.firstName').text(data.firstName);
+					$('.lastName').text(data.lastName);
+					$('.PESEL').text(data.pesel);
+					$('.city').text(data.city);
+					$('.email').text(data.email);
+					$('.description').text(data.description);
 
-			}})
-	}
+				},
+				error : function(data) {
+					alert("errror")
+					console.dir(data)
+
+				}
+			})
+		}
 		$('.navbar-right li > a').on('click', function() {
 			getInfo();
 		});
-		
+
 		//sa
-				$('#sendNewEmail').on('click', function() {
-					console.log(this)
+		$('#sendNewEmail').on('click', function() {
+			console.log(this)
 			//alert("Dsadsadsad");
 			var token = $("#token").attr("value");
 			var header = $("#header").attr("value");
@@ -381,14 +401,13 @@ display:inline-flex;
 				url : "editUserInfoEmail",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
-					
+
 				},
 				data : val, // parameters
 				success : function(data) {
 					getInfo();
 					console.dir(data);
 
-					
 				},
 				error : function() {
 					alert("errror")
@@ -398,7 +417,7 @@ display:inline-flex;
 		});
 		//city
 		$('#sendNewCity').on('click', function() {
-					console.log(this)
+			console.log(this)
 			//alert("Dsadsadsad");
 			var token = $("#token").attr("value");
 			var header = $("#header").attr("value");
@@ -410,14 +429,13 @@ display:inline-flex;
 				url : "editUserInfoCity",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
-					
+
 				},
 				data : val, // parameters
 				success : function(data) {
 					getInfo();
 					console.dir(data);
 
-					
 				},
 				error : function() {
 					alert("errror")
@@ -425,10 +443,10 @@ display:inline-flex;
 				}
 			})
 		});
-		
+
 		//password
 		$('#newPasswordSend').on('click', function() {
-					console.log(this)
+			console.log(this)
 			//alert("Dsadsadsad");
 			var token = $("#token").attr("value");
 			var header = $("#header").attr("value");
@@ -440,14 +458,13 @@ display:inline-flex;
 				url : "editUserInfoPassword",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
-					
+
 				},
 				data : val, // parameters
 				success : function(data) {
 					getInfo();
 					console.dir(data);
 
-					
 				},
 				error : function() {
 					alert("errror")
@@ -456,8 +473,8 @@ display:inline-flex;
 			})
 		});
 		//description
-				$('#sendNewDescription').on('click', function() {
-					console.log(this)
+		$('#sendNewDescription').on('click', function() {
+			console.log(this)
 			//alert("Dsadsadsad");
 			var token = $("#token").attr("value");
 			var header = $("#header").attr("value");
@@ -469,14 +486,13 @@ display:inline-flex;
 				url : "editUserInfoDecription",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token);
-					
+
 				},
 				data : val, // parameters
 				success : function(data) {
 					getInfo();
 					console.dir(data);
 
-					
 				},
 				error : function() {
 					alert("errror")

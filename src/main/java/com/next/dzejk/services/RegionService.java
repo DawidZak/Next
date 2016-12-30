@@ -50,9 +50,8 @@ public class RegionService implements IRegionService{
 	}
 
 	@Override
-	public Region findByid(int id) {
+	public Region findById(int id) {
 		return regionName.findOne(id);
-		
 	}
 
 	@Override
