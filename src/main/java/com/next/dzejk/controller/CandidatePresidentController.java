@@ -14,8 +14,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.next.dzejk.form.RegisterCandidatePresident;
 import com.next.dzejk.form.SettingsForm;
 import com.next.dzejk.model.CandidatePresident;
@@ -78,6 +76,3 @@ public class CandidatePresidentController {
 	}
 
 }
-
-// TODO:
-// http://www.tutorialspoint.com/spring/spring_mvc_form_handling_example.htm

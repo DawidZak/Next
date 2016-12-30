@@ -1,6 +1,7 @@
 package com.next.dzejk.form;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,9 +10,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class RegisterUser extends AbstractRegister {
 	@NotEmpty
 	protected String password;
-	@NotEmpty @Digits(integer=10, fraction = 0) //Walidacja dziala
+	@NotEmpty @Pattern(regexp="(^$|[0-9]{10})")
 	protected String PESEL;
-	@NotEmpty @Email
+	@NotEmpty @Email 
 	protected String email;
 	@NotEmpty
 	protected String city;
@@ -39,7 +40,7 @@ public class RegisterUser extends AbstractRegister {
 		return city;
 	}
 	public void setCity(String city) {
-		this.city = city;
+		 this.city = city;
 	}
 	public int getIdR() {
 		return IdR;

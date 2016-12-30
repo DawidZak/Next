@@ -54,11 +54,11 @@ public class HomeController {
 		logger.info("No czeœæ","g");
 		System.out.println(user.getCity());
 		logger.info("Welcome home! The client locale is {}.", locale);
-		if (i==0){
+
 		//politicalPartyRepository.save(new PoliticalParty(0,"Polska Silna", 43, "Right", "Andrew") );	
 		iUserService.saveInitUser(new User("Imie1", "Nazwisko1","1332","1233","wp.pl","Lodz",4));
 		i++;
-		}
+		
 		logger.info("USER" , user.getCity());
 		User user = new User();
 		

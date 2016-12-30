@@ -48,8 +48,13 @@ public class RegisterController { // extends CandidateManager
 	IUserService iUserRepository;
 	
 	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST)
-		public @ResponseBody  List<String> saveUser(@Valid @ModelAttribute("registerUser")   RegisterUser registerUser,BindingResult result, Model model){
+		public @ResponseBody  List<String> saveUser(@Valid @ModelAttribute("registerUser") RegisterUser registerUser,BindingResult result, Model model){
 			List<String> errors = new ArrayList<String>();
+			System.out.println("PESEL" );
+			System.out.println(registerUser.getEmail().replaceAll(",", " "));
+			logger.debug(registerUser.getPESEL().toString());
+			logger.error(registerUser.getCity().toString());
+			logger.error("imie" + registerUser.getFirstName() );
 			if (!result.hasErrors()){	
 				iUserRepository.saveUser(registerUser);
 				errors.add("SUCCESS");
