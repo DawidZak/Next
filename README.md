@@ -29,7 +29,7 @@ This README would normally document whatever steps are necessary to get your app
 * Other community or team contact
 
 ### Used ###
-* 4.2.0.RELEASE
+* Spring 4.2.0.RELEASE
 * Thymleaf
 * Hibernate
 * H2
