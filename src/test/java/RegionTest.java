@@ -25,7 +25,7 @@ public class RegionTest {
 	RegionService regionService;
 	
 	@Test
-	public void test() {
+	public void testSaveRegion() {
 		regionService.saveRegion(new Region("Warminsko-Mazurskie"));
 		System.out.println("a");
 		Region region = regionService.findById(1);

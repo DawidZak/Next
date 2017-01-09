@@ -22,7 +22,7 @@ import com.next.dzejk.services.ICandidatePartyPresidentService;
 import com.next.dzejk.services.ICandidatePresidentService;
 import com.next.dzejk.services.IPoliticalPartyService;
 
-//Kontroler odpowiedzialny za wyœwietlenie listy kandydatów
+
 @Controller
 @RequestMapping(value="/candidate/")
 public class CandidatePresidentController {
@@ -45,7 +45,6 @@ public class CandidatePresidentController {
 	
 
 	@RequestMapping(value = "/listPresident", method = RequestMethod.GET)
-	// Nazwa metody PO RM nie ma wp³ywu na mapowanie
 	public final  String list(Model model) {
 		List<CandidatePresident> candidates = iCandidatePresidentService.findAll();
 		List<PoliticalParty> politicalParty = iPoliticalPartyService.findAll();
