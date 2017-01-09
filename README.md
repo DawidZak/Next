@@ -31,7 +31,7 @@ This README would normally document whatever steps are necessary to get your app
 ### Used ###
 * Spring 4.2.0.RELEASE
 * Thymleaf
-* Hibernate
+* Hibernate 5.0.2.Final
 * H2
 * SpringSecurity
 * Spring Data
