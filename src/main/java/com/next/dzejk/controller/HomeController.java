@@ -27,7 +27,7 @@ import com.next.dzejk.services.IUserService;
  * Handles requests for the application home page.
  */
 @Controller 
-@Scope("request")
+//@Scope("request")
 
 public class HomeController {
 
@@ -36,7 +36,7 @@ public class HomeController {
 	@Autowired
 	IUserService iUserService;
 	
-	//Zmienic na srvice
+	//Change to service, not repository
 	@Autowired
 	IPolitcalPartyRepository politicalPartyRepository;
 	
