@@ -1,37 +1,12 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository ? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-* Lombok
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+It is my learning project writen in Java (all of back-ends technlogies which I used are bellow).
+As You can see (pom.xml) I connected project with SONAR on my localhost
 
 ### Used ###
 * Spring 4.2.0.RELEASE
-* Thymleaf
+* Thymleaf 2.1.4.RELEASE
 * Hibernate 5.0.2.Final
-* H2
-* SpringSecurity
-* Spring Data
+* H2 1.3.176
+* SpringSecurity 4.0.3.RELEASE
+* Spring Data 1.6.0.RELEASE
+* Junit 4.12
+

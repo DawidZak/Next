@@ -24,41 +24,44 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
- * Klasa konfiguracyjna. Definiuje ziarna zwiazane z konfiguracja polaczenia do
- * bazy H2.
+ * Config class with Hibernate,H2,Thymeleaf
  */
 
+/**
+ * @author Dawid
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.next", entityManagerFactoryRef = "entityManagerFactory")
 @ComponentScan("com.next.dzejk.services, com.next.dzejk.model")
 public class Config {
 	/**
-	 * Sterownik bazy danych.
+	 * JDBC driver.
 	 */
 
 	private String driver = "org.h2.Driver";
 
 	/**
-	 * Adres bazy.
+	 * Database adress.
 	 */
 
 	private String url = "jdbc:h2:tcp://localhost/~/Next1;INIT=CREATE SCHEMA IF NOT EXISTS Next;MV_STORE=FALSE;MVCC=FALSE;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE";
 
 	/**
-	 * Nazwa użytkownika.
+	 * Database user
 	 */
 
 	private String username = "sa";
 
 	/**
-	 * Haslo.
+	 * Database password
 	 */
 
 	private String password = "";
 
 	/**
-	 * Dialekt.
+	 * Dialect.
 	 */
 
 	private String dialect = "org.hibernate.dialect.H2Dialect";
@@ -71,13 +74,6 @@ public class Config {
 
 	private String UTF = "UTF-8";
 
-	/**
-	 * Ziarno tworzące entityManagerFactory. Umożliwia polaczenie z baza
-	 * danych i mapowanie obiektowo-relacyjne.
-	 *
-	 * @return LocalContainerEntityManagerFactoryBean zawierajace ustawienia
-	 *         polaczenia z baza danych.
-	 */
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -102,11 +98,8 @@ public class Config {
 	}
 
 	/**
-	 * Data Source zawiera konfiguracje polaczenia do bazy danych (adres, login,
-	 * haslo, sterownik bazy).
-	 *
-	 * @return obiekt klasy DataSource zawierajacy konfiguracje polaczenia do
-	 *         bazy danych.
+	* DataSource object
+	*
 	 */
 	@Bean
 	public DataSource dataSource() {
@@ -119,15 +112,6 @@ public class Config {
 		return dataSource;
 	}
 
-	/**
-	 * Ziarno zarzadzajace transakcjami bazodanowymi.
-	 *
-	 * @param emf
-	 *            - fabryka Entity Managerow - umozliwia powtorne wykorzystanie
-	 *            EntityManagera w ramach jednej transakcji.
-	 *
-	 * @return menadzer transakcji
-	 */
 	@Bean
 	public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -136,22 +120,15 @@ public class Config {
 		return transactionManager;
 	}
 
-	/**
-	 * Ziarno konwertujące niskopoziomowe wyjątki bazodanowe na Runtime
-	 * Exception.
-	 *
-	 * @return obiekt klasy PersistenceExceptionTranslationPostProcessor
-	 */
+
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
 	/**
-	 * Funkcja definiująca wlasciwosci automatycznego tworzenia bazy danych.
-	 *
-	 * @return obiekt Properties zawierajacy wlasciwosci automatycznego
-	 *         tworzenia bazy.
+	* Hiberante properties - show_sql to debug
+	*
 	 */
 	protected Properties additionalProperties() {
 		Properties properties = new Properties();
@@ -161,6 +138,10 @@ public class Config {
 		return properties;
 	}
 
+	/*
+	 *Thymleaf configuration, Spring template engine,thymeleafViewResolver 
+	 * 
+	 */
 	@Bean
 	public ServletContextTemplateResolver templateResolver() {
 		ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
