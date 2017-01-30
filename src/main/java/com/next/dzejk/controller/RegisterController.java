@@ -26,53 +26,48 @@ import com.next.dzejk.services.IUserService;
 
 @Controller
 public class RegisterController { // extends CandidateManager
-	
+
 	@Autowired
 	IRegionRepository regionName;
 
-	//@Autowired
-	//private ICandidateService iCandidate; // private CandidateService bylo
-
 	private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String addCandidate(Model model) {
 		List<Region> regions = regionName.findAll();
-
-		model.addAttribute("registerUser",new RegisterUser()); //ta wartosc jest do view i nizej
+		model.addAttribute("registerUser", new RegisterUser()); 
 		model.addAttribute("regions", regions);
 		model.addAttribute("settingsForm", new SettingsForm());
 		return "register";
 	}
+
 	@Autowired
 	IUserService iUserRepository;
-	
+
 	@RequestMapping(value = "/addSubmit", method = RequestMethod.POST)
-		public @ResponseBody  List<String> saveUser(@Valid @ModelAttribute("registerUser") RegisterUser registerUser,BindingResult result, Model model){
-			List<String> errors = new ArrayList<String>();
-			System.out.println("PESEL" );
-			System.out.println(registerUser.getEmail().replaceAll(",", " "));
-			logger.debug(registerUser.getPESEL().toString());
-			logger.error(registerUser.getCity().toString());
-			logger.error("imie" + registerUser.getFirstName() );
-			if (!result.hasErrors()){	
-				iUserRepository.saveUser(registerUser);
-				errors.add("SUCCESS");
-				return errors;
-			}else{
-				List<FieldError> lista;// =  new ArrayList<FieldError>();
-				lista = result.getFieldErrors();
-				for (FieldError error : lista) {
-					System.out.println(error);
-					errors.add(error.getField());
-					logger.info("Blad" + error.getField());
-				}
-				return errors;
-			} //end else
+	public @ResponseBody List<String> saveUser(@Valid @ModelAttribute("registerUser") RegisterUser registerUser,
+			BindingResult result, Model model) {
+		// Extracted method
+		return registerUserValidateFields(registerUser, result);
 
-	} //end saveUser
+	}
 
-} //end class
+	private List<String> registerUserValidateFields(RegisterUser registerUser, BindingResult result) {
+		List<String> errors = new ArrayList<String>();
+		if (!result.hasErrors()) {
+			iUserRepository.saveUser(registerUser);
+			errors.add("SUCCESS");
+			return errors;
+		} else {
+			List<FieldError> lista;// = new ArrayList<FieldError>();
+			lista = result.getFieldErrors();
+			for (FieldError error : lista) {
+				System.out.println(error);
+				errors.add(error.getField());
+				logger.info("Error" + error.getField());
+			}
+			return errors;
+		}
+	}
 
-
-
+}

@@ -22,9 +22,8 @@ import com.next.dzejk.services.ICandidatePartyPresidentService;
 import com.next.dzejk.services.ICandidatePresidentService;
 import com.next.dzejk.services.IPoliticalPartyService;
 
-
 @Controller
-@RequestMapping(value="/candidate/")
+@RequestMapping(value = "/candidate/")
 public class CandidatePresidentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CandidatePresidentController.class);
@@ -32,7 +31,7 @@ public class CandidatePresidentController {
 	private static final String NAZWA_RETURNA = "";
 
 	public static final String POLITICAL_PARTY_LIST = "politicalParty";
-	
+
 	@Autowired
 	ICandidatePresidentService iCandidatePresidentService;
 
@@ -42,17 +41,15 @@ public class CandidatePresidentController {
 	@Autowired
 	IPoliticalPartyService iPoliticalPartyService;
 
-	
-
 	@RequestMapping(value = "/listPresident", method = RequestMethod.GET)
-	public final  String list(Model model) {
+	public final String list(Model model) {
 		List<CandidatePresident> candidates = iCandidatePresidentService.findAll();
 		List<PoliticalParty> politicalParty = iPoliticalPartyService.findAll();
 		model.addAttribute("registerCandidate", new RegisterCandidatePresident());
 		model.addAttribute("politicalPartys", politicalParty);
 		model.addAttribute("candidates", candidates);
 		model.addAttribute("settingsForm", new SettingsForm());
-		
+
 		return "listCandidatePresident";
 
 	}
@@ -61,7 +58,6 @@ public class CandidatePresidentController {
 	String savePresidentCanidate(
 			@Valid @ModelAttribute("registerCandidate") RegisterCandidatePresident registerCandidate,
 			BindingResult result, Model model) {
-		;
 		logger.info("Wiek:" + registerCandidate.getAge());
 		logger.info(registerCandidate.getFirstName());
 		if (result.hasErrors()) {

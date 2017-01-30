@@ -19,24 +19,23 @@ public class PoliticalPartyController {
 
 	@Autowired
 	IPoliticalPartyService iPoliticalPartyService;
-	
+
 	public static final String POLITICAL_PARTY_LIST = "politicalParty";
 	public static final String REDIRECT_TO_POLITICAL_PARTY_LIST = "redirect:/politicalParty";
-	
-	@RequestMapping(value="/politicalParty", method=RequestMethod.GET)
-	String partyPresident(Model model ){
+
+	@RequestMapping(value = "/politicalParty", method = RequestMethod.GET)
+	String partyPresident(Model model) {
 		List<PoliticalParty> politicParty = iPoliticalPartyService.findAll();
 		model.addAttribute("politicParty", politicParty);
 		model.addAttribute("partyForm", new AddParty());
 		model.addAttribute("settingsForm", new SettingsForm());
 		return POLITICAL_PARTY_LIST;
 
-		
 	}
-	@RequestMapping(value="/politicalPartySend", method=RequestMethod.POST)
-	
-	String partyPresidsentSave(@ModelAttribute("partyForm") AddParty party ){	
-		iPoliticalPartyService.addPoliticalParty(party);			
+
+	@RequestMapping(value = "/politicalPartySend", method = RequestMethod.POST)
+	String partyPresidsentSave(@ModelAttribute("partyForm") AddParty party) {
+		iPoliticalPartyService.addPoliticalParty(party);
 		return REDIRECT_TO_POLITICAL_PARTY_LIST;
 	}
 }

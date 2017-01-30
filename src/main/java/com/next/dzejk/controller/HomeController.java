@@ -26,65 +26,54 @@ import com.next.dzejk.services.IUserService;
 /**
  * Handles requests for the application home page.
  */
-@Controller 
-//@Scope("request")
+@Controller
+// @Scope("request")
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	User user = new User();
 	@Autowired
 	IUserService iUserService;
-	
-	//Change to service, not repository
+
+	// Change to service, not repository
 	@Autowired
 	IPolitcalPartyRepository politicalPartyRepository;
-	
+
 	@Autowired
 	ICandidatePartyPresidentService icpp;
-	
-	@Autowired
-	User user;
-	int i=0;
+
+//	@Autowired
+	//User user;
+//	int i = 0;
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
-		//System.out.println("Widzisz?" +session.getId());
-		
-		user.setCity("scope?");
-		logger.info("No czeœæ","g");
-		System.out.println(user.getCity());
-		logger.info("Welcome home! The client locale is {}.", locale);
+		iUserService.saveInitUser(new User("Imie1", "Nazwisko1", "1332", "1233", "wp.pl", "Lodz", 4));
 
-		//politicalPartyRepository.save(new PoliticalParty(0,"Polska Silna", 43, "Right", "Andrew") );	
-		iUserService.saveInitUser(new User("Imie1", "Nazwisko1","1332","1233","wp.pl","Lodz",4));
-		i++;
-		
-		logger.info("USER" , user.getCity());
+		logger.info("User City", user.getCity());
 		User user = new User();
-		
-		logger.info("Uzytkownik"+ user);		  
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
-		System.out.println("PESEL Z INNEJ SESJI" +session.getAttribute("pesel"));
+
+		logger.info("User " + user);
 		/*
-		 * Without line below settings don't work beacouse don't know what is th:object ="${settingsForm}" 
+		 * Without line below settings don't work beacouse don't know what is
+		 * th:object ="${settingsForm}"
 		 */
 		model.addAttribute("settingsForm", new SettingsForm());
 
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(){
+	public String login() {
 		return "login";
 	}
-	@RequestMapping(value ="/authSuccesful", method = RequestMethod.GET)
-	public String authSuccesful(HttpSession session, Model model){
+
+	@RequestMapping(value = "/authSuccesful", method = RequestMethod.GET)
+	public String authSuccesful(HttpSession session, Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		session.setAttribute("pesel", authentication.getName());
-		
+
 		return "redirect:/";
 	}
-	
+
 }

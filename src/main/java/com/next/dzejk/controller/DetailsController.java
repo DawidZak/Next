@@ -15,12 +15,12 @@ import com.next.dzejk.form.SettingsForm;
 public class DetailsController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DetailsController.class);
-	
+
 	@RequestMapping(value = "/{Id}", method = RequestMethod.GET)
 	public String getDetails(@PathVariable int Id, Model model) {
-		
+
 		model.addAttribute("settingsForm", new SettingsForm());
-		logger.info("Id to: " + Id);
+		logger.info("Id " + Id);
 		return "candidateDetails";
 
 	}

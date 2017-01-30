@@ -10,7 +10,6 @@ import javax.persistence.Id;
 
 import lombok.RequiredArgsConstructor;
 
-
 /**
  * @author Dawid
  *
@@ -18,15 +17,15 @@ import lombok.RequiredArgsConstructor;
 @Entity
 
 public class Role {
-	
+
 	public Role(String name) {
 		super();
 		this.name = name;
 	}
-	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
-	private  String name;
+	private String name;
 
 }
- 

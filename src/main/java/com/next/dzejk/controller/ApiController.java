@@ -13,8 +13,7 @@ import com.next.dzejk.model.CandidatePresident;
 import com.next.dzejk.services.ICandidatePresidentService;
 
 /**
- * @author Dawid
- * Rest contoller which contains mapping to /api/ 
+ * @author Dawid Rest contoller which contains mapping to /api/
  */
 
 @RestController
@@ -25,9 +24,8 @@ public class ApiController {
 	ICandidatePresidentService iCandidatePresidentService;
 
 	@RequestMapping(value = "/PresidentCandidate", method = RequestMethod.GET)
-	List<CandidatePresident> apiForDevelopers(Model model)
-			throws  IOException {
-		
+	List<CandidatePresident> apiForDevelopers(Model model) throws IOException {
+
 		return iCandidatePresidentService.findAll();
 
 	}

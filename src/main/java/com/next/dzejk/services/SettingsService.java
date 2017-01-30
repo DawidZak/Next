@@ -12,20 +12,19 @@ public class SettingsService implements ISettingsService {
 
 	@Autowired
 	IUserRepository iUserRepository;
-	
+
 	@Override
-	public User changeUserSetings(String pesel){
+	public User changeUserSetings(String pesel) {
 		User user = iUserRepository.findByPesel(pesel);
 		return user;
-		
+
 	}
-	
-	@Override 
-	public boolean saveUserSetings(User user){
+
+	@Override
+	public boolean saveUserSetings(User user) {
 		System.out.println("kjest?" + user.getCity());
 		iUserRepository.save(user);
 		return false;
-		
-		
+
 	}
 }

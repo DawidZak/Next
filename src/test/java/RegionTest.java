@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -27,9 +28,9 @@ public class RegionTest {
 	@Test
 	public void testSaveRegion() {
 		regionService.saveRegion(new Region("Warminsko-Mazurskie"));
-		System.out.println("a");
 		Region region = regionService.findById(1);
 		System.out.println(region.getRegionName());
+		assertEquals("Warminsko-Mazurskie",region.getRegionName());
 	}
 
 	

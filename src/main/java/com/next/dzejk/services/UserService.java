@@ -31,16 +31,10 @@ public class UserService implements IUserService {
 
 	@Override
 	public User saveUser(RegisterUser registerUser) {
-		int i = 0;
-		// String hashedPassword=null;
 		String login = registerUser.getPESEL();
 		String password = registerUser.getPassword();
 		System.out.println(password);
-		// BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		// hashedPassword = passwordEncoder.encode(password);
-		// String hashedLogin = passwordEncoder.encode(login);
-		// System.out.println(hashedPassword);
-		i++;
+
 
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(registerUser.getPassword());
@@ -67,11 +61,11 @@ public class UserService implements IUserService {
 
 	}
 
-	@Override
-	public User updateUser(String pesel) {
-		Session sess = sessionFactory.openSession();
+	//@Override
+//	public User updateUser(String pesel) {
+		//Session sess = sessionFactory.openSession();
 
-		return null;
-	}
+		//return null;
+	//}
 
 }
