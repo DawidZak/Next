@@ -199,10 +199,10 @@ body {
 										Podstawowe</a></li>
 								<li role="presentation"><a href="#profile"
 									aria-controls="profile" role="tab" data-toggle="tab">Edytuj</a></li>
-								<li role="presentation"><a href="#messages"
-									aria-controls="messages" role="tab" data-toggle="tab">???</a></li>
+								<!-- <li role="presentation"><a href="#messages"
+									aria-controls="messages" role="tab" data-toggle="tab">???</a></li> 
 								<li role="presentation"><a href="#settings"
-									aria-controls="settings" role="tab" data-toggle="tab">Informacje</a></li>
+									aria-controls="settings" role="tab" data-toggle="tab">Informacje</a></li>  -->
 							</ul>
 
 							<!-- Tab panes -->
@@ -216,22 +216,21 @@ body {
 												<tr>
 													<td><h5>Imię:</h5>
 														<p class="firstName"></p></td>
-													<td class="type-info">Semibold 24px</td>
 												</tr>
 												<tr>
 													<td><h5>Nazwisko:</h5>
 														<p class="lastName">th</p></td>
-													<td class="type-info">Semibold 24px</td>
+													
 												</tr>
 												<tr>
 													<td><h5>PESEL:</h5>
 														<p class="PESEL"></p></td>
-													<td class="type-info">Semibold 24px</td>
+													
 												</tr>
 												<tr>
 													<td><h5>Miejsce zamieszkania:</h5>
 														<p class="city"></p></td>
-													<td class="type-info">Semibold 24px</td>
+													
 												</tr>
 											</tbody>
 										</table>
@@ -281,7 +280,7 @@ body {
 																id="exampleInputEmail1" placeholder="Aktualne hasło" />
 														</div>
 														<button class="btn btn-default" type="button"
-															id="newPasswordSend"></button>
+															id="newPasswordSend">Zmień</button>
 													</form></td>
 											</tr>
 											<tr>
@@ -297,9 +296,9 @@ body {
 															<label for="exampleInputEmail1">Nowe miejsce
 																zamieszkania:</label> <input th:field="${settingsForm.city}"
 																type="text" class="form-control" id="exampleInputEmail1"
-																placeholder="Email" />
+																placeholder="Miasto" />
 														</div>
-														<button type="button" id="sendNewCity">Zmien</button>
+														<button class="btn btn-default" type="button" id="sendNewCity">Zmień</button>
 													</form>
 												</td>
 											</tr>
@@ -317,7 +316,7 @@ body {
 															<textarea class="form-control" rows="5"
 																th:field="*{description}"></textarea>
 														</div>
-														<button type="button" id="sendNewDescription">Zmien</button>
+														<button class="btn btn-default" type="button" id="sendNewDescription">Zmien</button>
 													</form>
 												</td>
 											</tr>

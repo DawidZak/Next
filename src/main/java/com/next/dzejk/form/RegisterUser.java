@@ -10,7 +10,7 @@ public class RegisterUser extends AbstractRegister {
 	@NotEmpty
 	protected String password;
 	@NotEmpty
-	@Pattern(regexp = "(^$|[0-9]{10})")
+	@Pattern(regexp = "(^$|[0-9]{11})")
 	protected String PESEL;
 	@NotEmpty
 	@Email

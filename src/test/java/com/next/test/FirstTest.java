@@ -1,3 +1,4 @@
+package com.next.test;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
