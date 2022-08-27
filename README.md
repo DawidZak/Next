@@ -9,4 +9,4 @@ As You can see (pom.xml) I connected project with SONAR on my localhost
 * SpringSecurity 4.0.3.RELEASE
 * Spring Data 1.6.0.RELEASE
 * Junit 4.12
-
+test
